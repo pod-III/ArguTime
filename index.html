@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debating Timer</title>
+  </head>
+  <body>
+    <div class="navbar">
+      <ul>
+        <li><button>Debate Style</button></li>
+        <li><button></button></li>
+      </ul>
+    </div>
+    <div id="display">
+      <div id="time">00:00</div>
+    </div>
+    <div class="button-g">
+      <ul>
+        <li><button id="start">Start</button></li>
+        <li><button id="stop">Stop</button></li>
+        <li><button id="reset">Reset</button></li>
+      </ul>
+    </div>
+    <script>
+      //Global Variables
+      let system = "";
+      let speaker = "";
+      let time = 0;
+      let status = false;
+
+      const timeDisplay = document.getElementById("time");
+      const startButton = document.getElementById("start");
+      const stopButton = document.getElementById("stop");
+      const resetButton = document.getElementById("reset");
+
+      const changeDisplay = (number) => {
+        let minute = Math.floor(number / 60);
+        let second = number - minute * 60;
+        minute = minute.toString();
+        second = second.toString();
+        if (minute.length < 2) {
+          minute = "0" + minute;
+        }
+        if (second.length < 2) {
+          second = "0" + second;
+        }
+        console.log(minute, second);
+        let text = `${minute}:${second}`;
+        console.log("it loops");
+        timeDisplay.innerHTML = text;
+      };
+
+      const countUp = () => {
+        if (status) {
+          time = time + 1;
+          changeDisplay(time);
+        } else {
+          console.log("counting");
+        }
+      };
+
+      setInterval(countUp, 1000);
+
+      const countStop = () => {
+        clearInterval(myInterval);
+      };
+
+      startButton.addEventListener("click", () => {
+        status = true;
+      });
+      stopButton.addEventListener("click", () => {
+        console.log("stop button");
+        status = false;
+      });
+      resetButton.addEventListener("click", () => {
+        console.log("stop button");
+        time = 0;
+        changeDisplay(0);
+        status = false;
+      });
+    </script>
+  </body>
+</html>
