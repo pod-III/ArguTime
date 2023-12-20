@@ -24,31 +24,25 @@
   </head>
   <body>
     <div>
-      <ul>
-        <li>
-          <select id="system" name="Style">
-            <option value="BP">British Parliamentary</option>
-            <option value="Asian">Asian Parliamentary</option>
-            <option value="Austral">Australian Parliamentary</option>
-            <option value="NSDC">NSDC</option>
-          </select>
-        </li>
-      </ul>
+      <select id="system" name="Style">
+        <option value="BP">British Parliamentary</option>
+        <option value="Asian">Asian Parliamentary</option>
+        <option value="Austral">Australian Parliamentary</option>
+        <option value="NSDC">NSDC</option>
+      </select>
       <button id="bell"><i class="fa fa-bell"></i></button>
-      <audio id="bellAudio" src="./sound/bell.mp3"></audio>
+      <audio id="bellAudio1" src="./sound/bell.mp3"></audio>
+      <audio id="bellAudio2" src="./sound/bell 2.mp3"></audio>
     </div>
     <hr />
     <div id="display">
-      <div id="time">00:00</div>
+      <h1 id="time">00:00</h1>
       <button id="poi">POI</button>
     </div>
     <hr />
     <div class="button-g">
-      <ul>
-        <li><button id="start">Start</button></li>
-        <li><button id="stop">Stop</button></li>
-        <li><button id="reset">Reset</button></li>
-      </ul>
+      <button id="start">Start</button>
+      <button id="reset">Reset</button>
     </div>
     <script>
       //DOM Variables
@@ -63,29 +57,30 @@
 
       //Global Variables
       let timer;
+      let bellLoop;
       let system = {
         BP: {
           name: "British Parliamentary",
           speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "GW", "OW"],
-          time: [60, 360, 420],
+          time: [60, 360, 420, 440],
           poi: true,
         },
         Asian: {
           name: "Asian Parliamentary",
           speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "OR", "GR"],
-          time: [60, 360, 420],
+          time: [60, 360, 420, 440],
           poi: true,
         },
         NSDC: {
           name: "NSDC",
           speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "OR", "GR"],
-          time: [60, 420, 480],
+          time: [60, 420, 480, 500],
           poi: true,
         },
         Austral: {
           name: "Australian Parliamentary",
           speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "OR", "GR"],
-          time: [60, 420, 480],
+          time: [60, 420, 480, 500],
           poi: false,
         },
         list: function () {
@@ -109,10 +104,16 @@
 
       //Function to create a bell sound
 
-      const bellSound = () => {
-        const audioElement = document.getElementById("bellAudio");
-        audioElement.play();
-        console.log("test");
+      const bellSound = (i) => {
+        const bell_1 = document.getElementById("bellAudio1");
+        const bell_2 = document.getElementById("bellAudio2");
+        if (i == 1) {
+          bell_1.play();
+          console.log("test");
+        } else {
+          bell_2.play();
+          console.log("test");
+        }
       };
 
       // Change Debate System
@@ -140,16 +141,19 @@
         switch (time) {
           case timeRule[0]:
             background.style.backgroundColor = "green";
-            bellSound();
+            bellSound(1);
             break;
           case timeRule[1]:
             background.style.backgroundColor = "orange";
-            bellSound();
+            bellSound(1);
             break;
           case timeRule[2]:
             background.style.backgroundColor = "red";
-            bellSound();
-            bellSound();
+            bellSound(2);
+            break;
+          case timeRule[3]:
+            background.style.backgroundColor = "red";
+            bellLoop = setInterval(() => {bellSound(1)}, 1000)
             break;
           case 0:
             background.style.backgroundColor = "white";
@@ -170,6 +174,7 @@
         if (isRunning) {
           isRunning = false;
           clearInterval(timer);
+          clearInterval(bellLoop)
         }
       };
 
@@ -184,22 +189,25 @@
         const poiTimer = setInterval(() => {
           poiSecond++;
           poiButton.innerHTML = poiSecond;
-          if (poiSecond === 16 || !poiStatus || !isRunning) {
+          if (poiSecond === 16 || !isPoiAllowed || !isRunning) {
             poiSecond = 0;
             clearInterval(poiTimer);
             poiButton.innerHTML = "POI";
-            poiStatus = false;
+            isPoiAllowed = false;
           }
         }, 100);
       };
 
       startButton.addEventListener("click", () => {
-        console.log("start button");
-        start();
-      });
-      stopButton.addEventListener("click", () => {
-        console.log("stop button");
-        stop();
+        if (isRunning) {
+          console.log("stop button");
+          startButton.innerHTML = "Start";
+          stop();
+        } else {
+          console.log("start button");
+          startButton.innerHTML = "Stop";
+          start();
+        }
       });
       resetButton.addEventListener("click", () => {
         console.log("reset button");
@@ -207,11 +215,12 @@
         time = 0;
         changeDisplay(0);
         changeBackground();
+        startButton.innerHTML = "Start";
       });
       poiButton.addEventListener("click", () => {
         console.log("poi button");
         if (time >= 60 && time <= 360 && isRunning) {
-          poiStatus = poiStatus ? false : true;
+          isPoiAllowed = isPoiAllowed ? false : true;
           countPoi();
         } else {
           console.log("not time yet");
@@ -226,7 +235,7 @@
         }
       });
       bellButton.addEventListener("click", () => {
-        bellSound();
+        bellSound(1);
         console.log("bell button");
       });
     </script>
