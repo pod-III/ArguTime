@@ -9,6 +9,10 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -21,13 +25,24 @@
   <body>
     <div>
       <ul>
-        <li><button id="debate">Debate Style</button></li>
+        <li>
+          <select id="system" name="Style">
+            <option value="BP">British Parliamentary</option>
+            <option value="Asian">Asian Parliamentary</option>
+            <option value="Austral">Australian Parliamentary</option>
+            <option value="NSDC">NSDC</option>
+          </select>
+        </li>
       </ul>
+      <button id="bell"><i class="fa fa-bell"></i></button>
+      <audio id="bellAudio" src="./sound/bell.mp3"></audio>
     </div>
+    <hr />
     <div id="display">
       <div id="time">00:00</div>
       <button id="poi">POI</button>
     </div>
+    <hr />
     <div class="button-g">
       <ul>
         <li><button id="start">Start</button></li>
@@ -36,6 +51,16 @@
       </ul>
     </div>
     <script>
+      //DOM Variables
+      const debateStyleButton = document.getElementById("system");
+      const timeDisplay = document.getElementById("time");
+      const startButton = document.getElementById("start");
+      const stopButton = document.getElementById("stop");
+      const resetButton = document.getElementById("reset");
+      const poiButton = document.getElementById("poi");
+      const background = document.getElementById("display");
+      const bellButton = document.getElementById("bell");
+
       //Global Variables
       let timer;
       let system = {
@@ -46,7 +71,7 @@
           poi: true,
         },
         Asian: {
-          name: "Asian",
+          name: "Asian Parliamentary",
           speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "OR", "GR"],
           time: [60, 360, 420],
           poi: true,
@@ -58,7 +83,7 @@
           poi: true,
         },
         Austral: {
-          name: "Austral",
+          name: "Australian Parliamentary",
           speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "OR", "GR"],
           time: [60, 420, 480],
           poi: false,
@@ -74,24 +99,29 @@
           return list;
         },
       };
+
       let styleList = system.list();
-      let debateStyle = system.BP.name;
+      let timeRule = system["BP"].time;
       let time = 0;
       let poiSecond = 0;
       let isRunning = false;
       let isPoiAllowed = false;
 
       //Function to create a bell sound
-      const bellSound = () => {};
 
-      //DOM Variables
-      const debateStyleButton = document.getElementById("debate");
-      const timeDisplay = document.getElementById("time");
-      const startButton = document.getElementById("start");
-      const stopButton = document.getElementById("stop");
-      const resetButton = document.getElementById("reset");
-      const poiButton = document.getElementById("poi");
-      const background = document.getElementById("display");
+      const bellSound = () => {
+        const audioElement = document.getElementById("bellAudio");
+        audioElement.play();
+        console.log("test");
+      };
+
+      // Change Debate System
+      const changeSystem = () => {
+        let index = debateStyleButton.selectedIndex;
+        let style = debateStyleButton.options[index].value;
+        timeRule = system[style].time;
+        console.log(timeRule);
+      };
 
       const changeDisplay = (number) => {
         let minute = Math.floor(number / 60);
@@ -100,22 +130,26 @@
           let string = value < 10 ? `0${value}` : `${value}`;
           return string;
         }
-        console.log(minute, second);
+        //console.log(minute, second);
         let text = `${pad(minute)}:${pad(second)}`;
-        console.log("it loops");
+        //console.log("it loops");
         timeDisplay.innerHTML = text;
       };
 
       const changeBackground = () => {
         switch (time) {
-          case 60:
+          case timeRule[0]:
             background.style.backgroundColor = "green";
+            bellSound();
             break;
-          case 360:
+          case timeRule[1]:
             background.style.backgroundColor = "orange";
+            bellSound();
             break;
-          case 420:
+          case timeRule[2]:
             background.style.backgroundColor = "red";
+            bellSound();
+            bellSound();
             break;
           case 0:
             background.style.backgroundColor = "white";
@@ -182,6 +216,18 @@
         } else {
           console.log("not time yet");
         }
+      });
+      debateStyleButton.addEventListener("change", () => {
+        if (isRunning) {
+          console.log("can't change when timer running");
+        } else {
+          changeSystem();
+          console.log("select");
+        }
+      });
+      bellButton.addEventListener("click", () => {
+        bellSound();
+        console.log("bell button");
       });
     </script>
   </body>
