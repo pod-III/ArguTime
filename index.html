@@ -8,12 +8,13 @@
   <body>
     <div class="navbar">
       <ul>
-        <li><button>Debate Style</button></li>
+        <li><button id="debate">Debate Style</button></li>
         <li><button></button></li>
       </ul>
     </div>
     <div id="display">
       <div id="time">00:00</div>
+      <button id="poi">POI</button>
     </div>
     <div class="button-g">
       <ul>
@@ -24,15 +25,59 @@
     </div>
     <script>
       //Global Variables
-      let system = "";
-      let speaker = "";
-      let time = 0;
-      let status = false;
+      let system = {
+        BP: {
+          name: "British Parliamentary",
+          speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "GW", "OW"],
+          time: [60, 360, 420],
+          poi: true,
+        },
+        Asian: {
+          name: "Asian",
+          speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "OR", "GR"],
+          time: [60, 360, 420],
+          poi: true,
+        },
+        NSDC: {
+          name: "NSDC",
+          speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "OR", "GR"],
+          time: [60, 420, 480],
+          poi: true,
+        },
+        Austral: {
+          name: "Austral",
+          speakers: ["PM", "LO", "DPM", "DLO", "GM", "OM", "OR", "GR"],
+          time: [60, 420, 480],
+          poi: false,
+        },
+        list: function() {
+          let list = []
+          for (let key in this) {
+            if (this.hasOwnProperty(key) && typeof this[key] !== 'function') {
+              list.push(this[key].name)
+            }
+          }
+          console.log(list)
+          return list
+        }
+      };
 
+      let styleList = system.list()
+      let debateStyle = system.BP.name;
+      let time = 0;
+      let timePoi = 0;
+      let status = false;
+      let poiStatus = false;
+
+      const bellSound = () => {};
+
+      const debateStyleButton = document.getElementById("debate");
       const timeDisplay = document.getElementById("time");
       const startButton = document.getElementById("start");
       const stopButton = document.getElementById("stop");
       const resetButton = document.getElementById("reset");
+      const poiButton = document.getElementById("poi");
+      const background = document.getElementById("display");
 
       const changeDisplay = (number) => {
         let minute = Math.floor(number / 60);
@@ -51,7 +96,27 @@
         timeDisplay.innerHTML = text;
       };
 
-      const countUp = () => {
+      const changeBackground = () => {
+        switch (time) {
+          case 60:
+            background.style.backgroundColor = "green";
+            break;
+          case 360:
+            background.style.backgroundColor = "orange";
+            break;
+          case 420:
+            background.style.backgroundColor = "red";
+            break;
+          case 0:
+            background.style.backgroundColor = "white";
+            break;
+          default:
+            break;
+        }
+      };
+
+      const countStart = () => {
+        changeBackground();
         if (status) {
           time = time + 1;
           changeDisplay(time);
@@ -60,13 +125,23 @@
         }
       };
 
-      setInterval(countUp, 1000);
-
-      const countStop = () => {
-        clearInterval(myInterval);
+      const countPoi = () => {
+        const myInterval = setInterval(() => {
+          timePoi++;
+          poiButton.innerHTML = timePoi;
+          if (timePoi === 16 || !poiStatus) {
+            timePoi = 0;
+            clearInterval(myInterval);
+            poiButton.innerHTML = "POI";
+            poiStatus = false;
+          }
+        }, 1000);
       };
 
+      setInterval(countStart, 100);
+
       startButton.addEventListener("click", () => {
+        console.log("start button");
         status = true;
       });
       stopButton.addEventListener("click", () => {
@@ -74,10 +149,19 @@
         status = false;
       });
       resetButton.addEventListener("click", () => {
-        console.log("stop button");
+        console.log("reset button");
         time = 0;
         changeDisplay(0);
         status = false;
+      });
+      poiButton.addEventListener("click", () => {
+        console.log("poi button");
+        if (time >= 60 && time <= 360) {
+          poiStatus = poiStatus ? false : true;
+          countPoi();
+        } else {
+          console.log("not time yet");
+        }
       });
     </script>
   </body>
