@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+  }
+  /* Style the anchor like a button */
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #4caf50;
+    color: #fff;
+    border: 1px solid #4caf50;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* Change button style on hover */
+  .button:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+  }
