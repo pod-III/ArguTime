@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="./media/favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Debating Timer</title>
   </head>
   <body>
@@ -21,7 +21,7 @@
         >Debate Timer</a
       >
 
-      <!-- Navigation and Setting Buttons -->
+      <!-- Setting Buttons -->
       <select id="system" name="Style">
         <option value="BP">British Parliamentary</option>
         <option value="Asian">Asian Parliamentary</option>
@@ -32,8 +32,8 @@
       <button id="setting" onclick="openPopup()">
         <i class="fa fa-gear"></i>
       </button>
-      <audio id="bellAudio1" src="./sound/bell.mp3"></audio>
-      <audio id="bellAudio2" src="./sound/bell2.mp3"></audio>
+      <audio id="bellAudio1" src="./media/bell.mp3"></audio>
+      <audio id="bellAudio2" src="./media/bell2.mp3"></audio>
     </div>
     <hr />
 
@@ -71,6 +71,7 @@
     </div>
 
     <!-- Script -->
-    <script src="./script.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/module/audio.js"></script>
   </body>
 </html>

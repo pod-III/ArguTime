@@ -9,6 +9,10 @@ const nextButton = document.getElementById("next");
 const speakerText = document.getElementById("speaker");
 const background = document.getElementById("display");
 
+// Initial Edit for DOM
+beforeButton.style.visibility = "hidden";
+resetButton.style.display = "none";
+
 // SetInterval declaration as global variables
 let timer;
 let bellLoop;
@@ -354,62 +358,3 @@ function openPopup() {
 function closePopup() {
   document.getElementById("popupOverlay").style.display = "none";
 }
-
-// Audio Handler
-document.addEventListener("DOMContentLoaded", function () {
-  const audioFileInput = document.getElementById("audioFileInput");
-  const playButton = document.getElementById("playButton");
-  let audioContext;
-  let audioBuffer;
-
-  // Function to load a default audio file
-  function loadDefaultAudio() {
-    const defaultAudioPath = './sound/bell.mp3'; // Replace with the path to your default audio file
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', defaultAudioPath, true);
-    xhr.responseType = 'arraybuffer';
-
-    xhr.onload = function () {
-      const audioData = xhr.response;
-      audioContext = new (window.AudioContext)();
-      
-      audioContext.decodeAudioData(audioData, function (buffer) {
-        audioBuffer = buffer;
-      });
-    };
-
-    xhr.send();
-  }
-
-  // Load default audio when the page loads
-  loadDefaultAudio();
-
-  audioFileInput.addEventListener("change", function (event) {
-    playButton.disabled = false;
-
-    const file = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-      const audioData = e.target.result;
-
-      audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-      audioContext.decodeAudioData(audioData, function (buffer) {
-        audioBuffer = buffer;
-      });
-    };
-
-    reader.readAsArrayBuffer(file);
-  });
-
-  playButton.addEventListener("click", function () {
-    console.log("clicked")
-    if (audioContext && audioBuffer) {
-      const source = audioContext.createBufferSource();
-      source.buffer = audioBuffer;
-      source.connect(audioContext.destination);
-      source.start();
-    }
-  });
-});

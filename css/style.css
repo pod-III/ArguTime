@@ -1,9 +1,8 @@
-/* Global Styles */
 body {
   text-align: center;
   font-family: "Arial", sans-serif;
   padding: 0;
-  background-color: white; /* Bootstrap background color */
+  background-color: white;
 }
 
 .container {
@@ -15,7 +14,6 @@ a {
   text-decoration: none;
 }
 
-/* Button Styles */
 .button,
 button {
   display: inline-block;
@@ -27,11 +25,11 @@ button {
 }
 
 .button {
-  background-color: #007bff; /* Bootstrap primary color */
+  background-color: #007bff;
 }
 
 button {
-  background-color: #28a745; /* Bootstrap success color */
+  background-color: #28a745;
   border: none;
 }
 
@@ -40,7 +38,6 @@ button {
   border-color: #45a049;
 }
 
-/* Popup Styles */
 .overlay {
   display: none;
   position: fixed;
@@ -73,7 +70,6 @@ button {
   cursor: pointer;
 }
 
-/* Input Styles */
 input[type="file"] {
   display: block;
   margin: 10px 0;
@@ -93,7 +89,6 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
 }
 
-/* Select Styles */
 select {
   padding: 10px;
   font-size: 16px;
@@ -105,12 +100,12 @@ select {
 }
 
 select::after {
-  content: "\25BC"; /* Unicode character for a down arrow */
+  content: "\25BC";
   position: absolute;
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
-  pointer-events: none; /* Make sure the arrow is not clickable */
+  pointer-events: none;
   color: #333;
 }
 
@@ -119,14 +114,12 @@ select option {
   color: #333;
 }
 
-/* Separator */
 hr {
   margin: 20px 0;
   border: 0;
   border-top: 1px solid #ccc;
 }
 
-/* Additional Styles */
 #display {
   text-align: center;
   margin: 20px 0;
@@ -147,8 +140,8 @@ hr {
 
 #display {
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr; 
-  grid-template-rows: 1fr; 
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-rows: 1fr;
   align-items: center;
   margin: auto 0;
   padding: 0;
@@ -157,7 +150,7 @@ hr {
 #before,
 #container,
 #next {
-  margin: 0; 
+  margin: 0;
   padding: 10px;
 }
 
@@ -167,9 +160,9 @@ hr {
 
 #before,
 #next {
-  width: 10vw; 
+  width: 10vw;
 }
 
-#cb-display{
+#cb-display {
   text-align: center;
 }
