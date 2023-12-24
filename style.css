@@ -1,22 +1,164 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 50px;
-  }
-  /* Style the anchor like a button */
-  .button {
-    display: inline-block;
-    padding: 10px 20px;
-    text-decoration: none;
-    background-color: #4caf50;
-    color: #fff;
-    border: 1px solid #4caf50;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+/* Change button style on hover */
+.button:hover {
+  background-color: #45a049;
+  border-color: #45a049;
+}
 
-  /* Change button style on hover */
-  .button:hover {
-    background-color: #45a049;
-    border-color: #45a049;
-  }
+/* Styles for the overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles for the popup */
+.popup {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+/* Close button style */
+.close-btn {
+  cursor: pointer;
+  color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+
+body {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* Bootstrap background color */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #007bff; /* Bootstrap primary color */
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+#display {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#time {
+  font-size: 3em;
+  color: #007bff;
+}
+
+#speaker {
+  color: #333;
+}
+
+.button-g {
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #28a745; /* Bootstrap success color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: block;
+  margin: 10px 0;
+}
+
+select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Style the dropdown arrow */
+select::after {
+  content: '\25BC'; /* Unicode character for a down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; /* Make sure the arrow is not clickable */
+  color: #333;
+}
+
+/* Style the options in the dropdown */
+select option {
+  background-color: #fff;
+  color: #333;
+}
