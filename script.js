@@ -124,6 +124,7 @@ const buttonDisplay = () => {
     default:
       break;
   }
+  changeBackground()
 };
 
 // Function to check Poi Rule
@@ -215,7 +216,7 @@ const changeBackground = () => {
         }, 1000);
         break;
       case 0:
-        background.style.backgroundColor = "#f8f9fa;";
+        background.style.backgroundColor = "whote;";
         break;
       default:
         break;
@@ -241,7 +242,7 @@ const changeBackground = () => {
         }, 1000);
         break;
       case 0:
-        background.style.backgroundColor = "#f8f9fa;";
+        background.style.backgroundColor = "white;";
         break;
       default:
         break;
