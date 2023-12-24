@@ -169,3 +169,7 @@ hr {
 #next {
   width: 10vw; 
 }
+
+#cb-display{
+  text-align: center;
+}
