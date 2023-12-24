@@ -104,21 +104,21 @@ let isPoiAllowed = false;
 const buttonDisplay = () => {
   switch (speakerOrder) {
     case 0:
-      beforeButton.style.display = "none";
+      beforeButton.style.visibility = "hidden";
       break;
     case 1:
-      beforeButton.style.display = "inline";
+      beforeButton.style.visibility = "visible";
       break;
     case 5:
       poiRule = system[styles].poi[0];
       checkPOI();
       break;
     case 6:
-      nextButton.style.display = "inline";
+      nextButton.style.visibility = "visible";
       checkPOI();
       break;
     case 7:
-      nextButton.style.display = "none";
+      nextButton.style.visibility = "hidden";
       checkPOI();
       break;
     default:

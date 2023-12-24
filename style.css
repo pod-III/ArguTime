@@ -1,8 +1,7 @@
 /* Global Styles */
 body {
   text-align: center;
-  font-family: 'Arial', sans-serif;
-  margin: 0;
+  font-family: "Arial", sans-serif;
   padding: 0;
   background-color: white; /* Bootstrap background color */
 }
@@ -106,7 +105,7 @@ select {
 }
 
 select::after {
-  content: '\25BC'; /* Unicode character for a down arrow */
+  content: "\25BC"; /* Unicode character for a down arrow */
   position: absolute;
   top: 50%;
   right: 10px;
@@ -144,4 +143,28 @@ hr {
 
 .button-g {
   text-align: center;
+}
+
+#display {
+  display: grid;
+  grid-template-columns: auto 1fr auto; 
+  grid-template-rows: 1fr; 
+  align-items: center;
+  margin: auto 50px;
+}
+
+#before,
+#container,
+#next {
+  margin: 0 10px 0 10px; 
+  padding: 10px;
+}
+
+#time {
+  text-align: center;
+}
+
+#before,
+#next {
+  width: 100%; 
 }

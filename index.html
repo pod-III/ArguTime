@@ -3,12 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    /> -->
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -18,6 +12,7 @@
     <title>Debating Timer</title>
   </head>
   <body>
+    <!-- Navigation and Buttons -->
     <div>
       <a href="./page/cb.html" class="button" onclick="buttonClick()"
         >Casebuilding Timer</a
@@ -26,16 +21,14 @@
         >Debate Timer</a
       >
 
-      <!-- Navigation, and Setting Button -->
+      <!-- Navigation and Setting Buttons -->
       <select id="system" name="Style">
         <option value="BP">British Parliamentary</option>
         <option value="Asian">Asian Parliamentary</option>
         <option value="Austral">Australian Parliamentary</option>
         <option value="NSDC">NSDC</option>
       </select>
-      <button id="playButton">
-        <i class="fa fa-volume-up"></i>
-      </button>
+      <button id="playButton"><i class="fa fa-volume-up"></i></button>
       <button id="setting" onclick="openPopup()">
         <i class="fa fa-gear"></i>
       </button>
@@ -46,20 +39,21 @@
 
     <!-- Time and Speaker Overlay -->
     <div id="display">
-      <h1 id="time">00:00</h1>
-      <button id="poi">POI</button>
+      <button id="before"><i class="fa fa-arrow-left"></i></button>
+      <div id="container">
+        <h1 id="time">00:00</h1>
+        <button id="poi">POI</button>
+      </div>
+      <button id="next"><i class="fa fa-arrow-right"></i></button>
     </div>
     <hr />
     <h3 id="speaker"></h3>
     <hr />
 
-    <!-- Control Button -->
+    <!-- Control Buttons -->
     <div class="button-g">
       <button id="start">Start</button>
       <button id="reset">Reset</button>
-      <hr />
-      <button id="before">Before</button>
-      <button id="next">Next</button>
     </div>
     <hr />
 
@@ -71,6 +65,8 @@
         <input type="file" accept="audio/*" id="audioFileInput" />
       </div>
     </div>
+
+    <!-- Script -->
     <script src="./script.js"></script>
   </body>
 </html>
