@@ -166,3 +166,52 @@
         bellSound(1);
         console.log("bell button");
       });
+
+
+// Pop Up Function
+function openPopup() {
+    document.getElementById("popupOverlay").style.display = "flex";
+  }
+  
+  function closePopup() {
+    document.getElementById("popupOverlay").style.display = "none";
+  }
+  
+  // Audio Handler
+  document.addEventListener("DOMContentLoaded", function () {
+    const audioFileInput = document.getElementById("audioFileInput");
+    const playButton = document.getElementById("playButton");
+    let audioContext;
+    let audioBuffer;
+  
+    audioFileInput.addEventListener("change", function (event) {
+      playButton.disabled = false;
+  
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onload = function (e) {
+        const audioData = e.target.result;
+  
+        // Initialize the audio context
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  
+        // Decode the audio data
+        audioContext.decodeAudioData(audioData, function (buffer) {
+          audioBuffer = buffer;
+        });
+      };
+  
+      reader.readAsArrayBuffer(file);
+    });
+  
+    playButton.addEventListener("click", function () {
+      if (audioContext && audioBuffer) {
+        const source = audioContext.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(audioContext.destination);
+        source.start();
+      }
+    });
+  });
+  

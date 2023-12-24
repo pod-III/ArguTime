@@ -1,18 +1,20 @@
-//DOM Variables
+// DOM Variables
 const debateStyleButton = document.getElementById("system");
 const timeDisplay = document.getElementById("time");
 const startButton = document.getElementById("start");
 const resetButton = document.getElementById("reset");
 const poiButton = document.getElementById("poi");
 const background = document.getElementById("display");
-const bellButton = document.getElementById("bell");
+// const bellButton = document.getElementById("bell");
 const beforeButton = document.getElementById("before");
 const nextButton = document.getElementById("next");
 const speakerText = document.getElementById("speaker");
-resetButton.style.display = "none";
-//Global Variables
+
+// SetInterval declaration as global variables
 let timer;
 let bellLoop;
+
+// Debating System Rule as object
 let system = {
   BP: {
     name: "British Parliamentary",
@@ -85,6 +87,8 @@ let system = {
     return list;
   },
 };
+
+// Global Variables
 let speakersTime = [];
 let styleList = system.list();
 let styles = "BP";
@@ -97,11 +101,7 @@ let poiSecond = 0;
 let isRunning = false;
 let isPoiAllowed = false;
 
-// Speaker Display
-speakerText.innerHTML = speaker;
-
-//Button Display
-
+// Function to check the button display rule
 const buttonDisplay = () => {
   switch (speakerOrder) {
     case 0:
@@ -126,9 +126,8 @@ const buttonDisplay = () => {
       break;
   }
 };
-buttonDisplay();
 
-//Function to check Poi Rule
+// Function to check Poi Rule
 const checkPOI = () => {
   if (speakerOrder > 5) {
     poiRule = system[styles].poi[1];
@@ -142,8 +141,7 @@ const checkPOI = () => {
   }
 };
 
-//Function to create a bell sound
-
+// Function to create a bell sound
 const bellSound = (i) => {
   const bell_1 = document.getElementById("bellAudio1");
   const bell_2 = document.getElementById("bellAudio2");
@@ -156,6 +154,7 @@ const bellSound = (i) => {
   }
 };
 
+// Function to update the timer display
 const changeDisplay = (number) => {
   let minute = Math.floor(number / 60);
   let second = number % 60;
@@ -169,7 +168,7 @@ const changeDisplay = (number) => {
   timeDisplay.innerHTML = text;
 };
 
-// Function to update speaker
+// Function to update speaker position
 const updateSpeaker = () => {
   time = speakersTime[speakerOrder];
   if (time === undefined) {
@@ -183,7 +182,7 @@ const updateSpeaker = () => {
   startButton.innerHTML = "Start";
 };
 
-// Change Debate System
+// Function to change the debate system
 const changeSystem = () => {
   let index = debateStyleButton.selectedIndex;
   styles = debateStyleButton.options[index].value;
@@ -194,6 +193,7 @@ const changeSystem = () => {
   // console.log(timeRule);
 };
 
+// Function to change the background based on the amount of time passed by
 const changeBackground = () => {
   if (speakerOrder < 3) {
     switch (time) {
@@ -250,6 +250,7 @@ const changeBackground = () => {
   }
 };
 
+// Function that start the counting process
 const start = () => {
   resetButton.style.display = "inline";
   startButton.innerHTML = "Stop";
@@ -257,6 +258,7 @@ const start = () => {
   timer = setInterval(counting, 100);
 };
 
+// Function to stop the counting process
 const stop = () => {
   startButton.innerHTML = "Start";
   isRunning = false;
@@ -264,18 +266,21 @@ const stop = () => {
   clearInterval(bellLoop);
 };
 
+// Function to count normal timer/stopwatch
 const counting = () => {
   changeBackground();
   time++;
   changeDisplay(time);
 };
 
+// Function to count POI timer/stopwatch
 const countPoi = () => {
   poiButton.innerHTML = poiSecond;
   const poiTimer = setInterval(() => {
     poiSecond++;
     poiButton.innerHTML = poiSecond;
     if (poiSecond === 16 || !isPoiAllowed || !isRunning) {
+      bellSound(1);
       poiSecond = 0;
       clearInterval(poiTimer);
       poiButton.innerHTML = "POI";
@@ -284,7 +289,12 @@ const countPoi = () => {
   }, 100);
 };
 
-// Event Listener
+// Initial DOM edit
+speakerText.innerHTML = speaker;
+resetButton.style.display = "none";
+buttonDisplay();
+
+// Event Listeners for the HTML Elements
 startButton.addEventListener("click", () => {
   if (isRunning) {
     console.log("stop button");
@@ -319,10 +329,10 @@ debateStyleButton.addEventListener("change", () => {
     console.log("select");
   }
 });
-bellButton.addEventListener("click", () => {
-  bellSound(1);
-  console.log("bell button");
-});
+// bellButton.addEventListener("click", () => {
+//   bellSound(1);
+//   console.log("bell button");
+// });
 beforeButton.addEventListener("click", () => {
   speakerOrder--;
   //   console.log(speakersTime);
@@ -337,4 +347,51 @@ nextButton.addEventListener("click", () => {
   //   console.log("Speaker:", speakerOrder + 1);
   updateSpeaker();
   buttonDisplay();
+});
+
+// Pop Up Function
+function openPopup() {
+  document.getElementById("popupOverlay").style.display = "flex";
+}
+
+function closePopup() {
+  document.getElementById("popupOverlay").style.display = "none";
+}
+
+// Audio Handler
+document.addEventListener("DOMContentLoaded", function () {
+  const audioFileInput = document.getElementById("audioFileInput");
+  const playButton = document.getElementById("playButton");
+  let audioContext;
+  let audioBuffer;
+
+  audioFileInput.addEventListener("change", function (event) {
+    playButton.disabled = false;
+
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const audioData = e.target.result;
+
+      // Initialize the audio context
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+      // Decode the audio data
+      audioContext.decodeAudioData(audioData, function (buffer) {
+        audioBuffer = buffer;
+      });
+    };
+
+    reader.readAsArrayBuffer(file);
+  });
+
+  playButton.addEventListener("click", function () {
+    if (audioContext && audioBuffer) {
+      const source = audioContext.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(audioContext.destination);
+      source.start();
+    }
+  });
 });
