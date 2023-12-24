@@ -255,7 +255,7 @@ const start = () => {
   resetButton.style.display = "inline";
   startButton.innerHTML = "Stop";
   isRunning = true;
-  timer = setInterval(counting, 100);
+  timer = setInterval(counting, 1000);
 };
 
 // Function to stop the counting process
@@ -286,7 +286,7 @@ const countPoi = () => {
       poiButton.innerHTML = "POI";
       isPoiAllowed = false;
     }
-  }, 100);
+  }, 1000);
 };
 
 // Initial DOM edit

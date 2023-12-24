@@ -84,7 +84,7 @@ const changeDisplay = (number) => {
 const start = () => {
   if (!isRunning) {
     isRunning = true;
-    timer = setInterval(counting, 100);
+    timer = setInterval(counting, 1000);
     startButton.innerHTML = "Stop";
   }
 };
