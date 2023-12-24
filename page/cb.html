@@ -37,8 +37,8 @@
       <button id="setting" onclick="openPopup()">
         <i class="fa fa-gear"></i>
       </button>
-      <audio id="bellAudio1" src="./sound/bell.mp3"></audio>
-      <audio id="bellAudio2" src="./sound/bell2.mp3"></audio>
+      <audio id="bellAudio1" src="../sound/bell.mp3"></audio>
+      <audio id="bellAudio2" src="../sound/bell2.mp3"></audio>
     </div>
     <hr />
     <div id="display">
@@ -48,6 +48,13 @@
     <div class="button-g">
       <button id="start">Start</button>
       <button id="reset">Reset</button>
+    </div>
+    <div class="overlay" id="popupOverlay">
+      <div class="popup">
+        <span class="close-btn" onclick="closePopup()">Save</span>
+        <h2>Upload Sound</h2>
+        <input type="file" accept="audio/*" id="audioFileInput" />
+      </div>
     </div>
     <script src="./cb.js"></script>
   </body>

@@ -4,11 +4,10 @@ const timeDisplay = document.getElementById("time");
 const startButton = document.getElementById("start");
 const resetButton = document.getElementById("reset");
 const poiButton = document.getElementById("poi");
-const background = document.getElementById("display");
-// const bellButton = document.getElementById("bell");
 const beforeButton = document.getElementById("before");
 const nextButton = document.getElementById("next");
 const speakerText = document.getElementById("speaker");
+const background = document.getElementById("display");
 
 // SetInterval declaration as global variables
 let timer;
@@ -216,7 +215,7 @@ const changeBackground = () => {
         }, 1000);
         break;
       case 0:
-        background.style.backgroundColor = "white";
+        background.style.backgroundColor = "#f8f9fa;";
         break;
       default:
         break;
@@ -242,7 +241,7 @@ const changeBackground = () => {
         }, 1000);
         break;
       case 0:
-        background.style.backgroundColor = "white";
+        background.style.backgroundColor = "#f8f9fa;";
         break;
       default:
         break;
@@ -255,7 +254,7 @@ const start = () => {
   resetButton.style.display = "inline";
   startButton.innerHTML = "Stop";
   isRunning = true;
-  timer = setInterval(counting, 100);
+  timer = setInterval(counting, 1000);
 };
 
 // Function to stop the counting process
@@ -286,7 +285,7 @@ const countPoi = () => {
       poiButton.innerHTML = "POI";
       isPoiAllowed = false;
     }
-  }, 100);
+  }, 1000);
 };
 
 // Initial DOM edit
@@ -329,10 +328,6 @@ debateStyleButton.addEventListener("change", () => {
     console.log("select");
   }
 });
-// bellButton.addEventListener("click", () => {
-//   bellSound(1);
-//   console.log("bell button");
-// });
 beforeButton.addEventListener("click", () => {
   speakerOrder--;
   //   console.log(speakersTime);
@@ -365,6 +360,28 @@ document.addEventListener("DOMContentLoaded", function () {
   let audioContext;
   let audioBuffer;
 
+  // Function to load a default audio file
+  function loadDefaultAudio() {
+    const defaultAudioPath = './sound/bell.mp3'; // Replace with the path to your default audio file
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', defaultAudioPath, true);
+    xhr.responseType = 'arraybuffer';
+
+    xhr.onload = function () {
+      const audioData = xhr.response;
+      audioContext = new (window.AudioContext)();
+      
+      audioContext.decodeAudioData(audioData, function (buffer) {
+        audioBuffer = buffer;
+      });
+    };
+
+    xhr.send();
+  }
+
+  // Load default audio when the page loads
+  loadDefaultAudio();
+
   audioFileInput.addEventListener("change", function (event) {
     playButton.disabled = false;
 
@@ -374,10 +391,8 @@ document.addEventListener("DOMContentLoaded", function () {
     reader.onload = function (e) {
       const audioData = e.target.result;
 
-      // Initialize the audio context
       audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
-      // Decode the audio data
       audioContext.decodeAudioData(audioData, function (buffer) {
         audioBuffer = buffer;
       });
@@ -387,6 +402,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   playButton.addEventListener("click", function () {
+    console.log("clicked")
     if (audioContext && audioBuffer) {
       const source = audioContext.createBufferSource();
       source.buffer = audioBuffer;
