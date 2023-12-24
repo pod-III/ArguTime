@@ -195,59 +195,60 @@ const changeSystem = () => {
 
 // Function to change the background based on the amount of time passed by
 const changeBackground = () => {
-  if (speakerOrder < 3) {
-    switch (time) {
-      case timeRule[0]:
-        background.style.backgroundColor = "green";
-        bellSound(1);
-        break;
-      case timeRule[1]:
-        background.style.backgroundColor = "orange";
-        bellSound(1);
-        break;
-      case timeRule[2]:
-        background.style.backgroundColor = "red";
-        bellSound(2);
-        break;
-      case timeRule[3]:
-        background.style.backgroundColor = "red";
-        bellLoop = setInterval(() => {
-          bellSound(1);
-        }, 1000);
-        break;
-      case 0:
-        background.style.backgroundColor = "whote;";
-        break;
-      default:
-        break;
-    }
-  } else {
-    switch (time) {
-      case timeRule[4]:
-        background.style.backgroundColor = "green";
-        bellSound(1);
-        break;
-      case timeRule[5]:
-        background.style.backgroundColor = "orange";
-        bellSound(1);
-        break;
-      case timeRule[6]:
-        background.style.backgroundColor = "red";
-        bellSound(2);
-        break;
-      case timeRule[7]:
-        background.style.backgroundColor = "red";
-        bellLoop = setInterval(() => {
-          bellSound(1);
-        }, 1000);
-        break;
-      case 0:
-        background.style.backgroundColor = "white;";
-        break;
-      default:
-        break;
-    }
-  }
+  // if (speakerOrder < 3) {
+  //   switch (time) {
+  //     case timeRule[0]:
+  //       background.style.backgroundColor = "green";
+  //       bellSound(1);
+  //       break;
+  //     case timeRule[1]:
+  //       background.style.backgroundColor = "orange";
+  //       bellSound(1);
+  //       break;
+  //     case timeRule[2]:
+  //       background.style.backgroundColor = "red";
+  //       bellSound(2);
+  //       break;
+  //     case timeRule[3]:
+  //       background.style.backgroundColor = "red";
+  //       bellLoop = setInterval(() => {
+  //         bellSound(1);
+  //       }, 1000);
+  //       break;
+  //     case 0:
+  //       background.style.backgroundColor = "whote;";
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // } else {
+  //   switch (time) {
+  //     case timeRule[4]:
+  //       background.style.backgroundColor = "green";
+  //       bellSound(1);
+  //       break;
+  //     case timeRule[5]:
+  //       background.style.backgroundColor = "orange";
+  //       bellSound(1);
+  //       break;
+  //     case timeRule[6]:
+  //       background.style.backgroundColor = "red";
+  //       bellSound(2);
+  //       break;
+  //     case timeRule[7]:
+  //       background.style.backgroundColor = "red";
+  //       bellLoop = setInterval(() => {
+  //         bellSound(1);
+  //       }, 1000);
+  //       break;
+  //     case 0:
+  //       background.style.backgroundColor = "white;";
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
+  console.log("background change called")
 };
 
 // Function that start the counting process
