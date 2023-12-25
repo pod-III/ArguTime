@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to load a default audio file
     function loadDefaultAudio() {
-      const defaultAudioPath = "media/bell.mp3";
+      const defaultAudioPath = "../media/bell.mp3";
       const xhr = new XMLHttpRequest();
       xhr.open("GET", defaultAudioPath, true);
       xhr.responseType = "arraybuffer";
