@@ -196,7 +196,7 @@ function closePopup() {
   document.getElementById("popupOverlay").style.display = "none";
 }
 
-// Pop Up Function
+// Pop Up Function Form
 function openPopupForm() {
   document.getElementById("popupOverlayForm").style.display = "flex";
 }

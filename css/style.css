@@ -25,18 +25,30 @@ button {
   color: #fff;
 }
 
+button {
+  box-shadow: none;
+  background-color: #007bff;
+}
+
+button:active {
+  background-color: #007bff79;
+}
+
+#poi {
+  box-shadow: none;
+  background-color: grey;
+}
+
+#poi:active {
+  background-color: #007bff79;
+}
+
 .button {
   background-color: #007bff;
 }
 
-button {
-  background-color: #28a745;
-  border: none;
-}
-
-.button:hover {
-  background-color: #45a049;
-  border-color: #45a049;
+.button:active {
+  background-color: #007bff79;
 }
 
 .overlay {
@@ -128,7 +140,7 @@ hr {
 }
 
 #time {
-  font-size: 3em;
+  font-size: 5em;
   color: #007bff;
 }
 

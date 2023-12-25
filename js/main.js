@@ -232,6 +232,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to update speaker position
   const updateSpeaker = () => {
     time = speakersTime[speakerOrder] || 0;
+    checkPOI();
+    poiButtonChecker();
     changeDisplay(time);
     stop();
     speaker = system[styles].speakers[speakerOrder];
@@ -249,15 +251,35 @@ document.addEventListener("DOMContentLoaded", function () {
     changeDisplay(time);
   };
 
+  // Check POI Button
+  const poiColor = function (i) {
+    poiButton.style.backgroundColor = i === 1 ? "#28a745" : "grey";
+    poiButton.disabled = i === 1? false : true
+  };
+
+  const poiButtonChecker = () => {
+    const rule1 = time >= timeRule[0];
+    const rule2 = time <= timeRule[1] || time <= timeRule[5];
+    if (poiRule) {
+      if (rule1 && rule2) {
+        poiColor(1);
+      } else {
+        poiColor(2);
+      }
+    }
+  };
+
   // Function to bell a sound based on the amount of time passed
   const timeKeeperFunction = () => {
     if (timeRule.includes(time)) {
       if (speakerOrder < 7) {
         switch (time) {
           case timeRule[0]:
+            poiColor(1);
             bellSound(1);
             break;
           case timeRule[1]:
+            poiColor(2);
             bellSound(1);
             break;
           case timeRule[2]:
@@ -274,9 +296,11 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         switch (time) {
           case timeRule[4]:
+            poiColor(1);
             bellSound(1);
             break;
           case timeRule[5]:
+            poiColor(2);
             bellSound(1);
             break;
           case timeRule[6]:
@@ -299,7 +323,7 @@ document.addEventListener("DOMContentLoaded", function () {
     resetButton.style.display = "inline";
     startButton.innerHTML = "Stop";
     isRunning = true;
-    timer = setInterval(counting, 1000);
+    timer = setInterval(counting, 100);
   };
 
   // Function to stop the counting process
@@ -330,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
         poiButton.innerHTML = "POI";
         isPoiAllowed = false;
       }
-    }, 1000);
+    }, 100);
   };
 
   // Initial DOM edit
@@ -348,6 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
     stop();
     time = 0;
     changeDisplay(0);
+    poiButtonChecker()
   });
 
   poiButton.addEventListener("click", () => {
@@ -386,7 +411,7 @@ function closePopup() {
   document.getElementById("popupOverlay").style.display = "none";
 }
 
-// Pop Up Function
+// Pop Up Function Form
 function openPopupForm() {
   document.getElementById("popupOverlayForm").style.display = "flex";
 }
