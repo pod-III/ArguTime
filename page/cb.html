@@ -1,35 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Meta tags for character set and viewport settings -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Bootstrap CSS (commented out, you can uncomment if needed) -->
-    <!--
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    -->
-
-    <!-- Favicon and Font Awesome CSS -->
+    <!-- Uncomment the following line if you need Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link rel="icon" href="../media/favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css" />
-
-    <!-- Page Title -->
     <title>Case Building</title>
   </head>
   <body>
-    <!-- Navigation Links -->
     <div>
       <a href="./cb.html" class="button" onclick="buttonClick()"
         >Casebuilding Timer</a
@@ -38,7 +22,6 @@
         >Debate Timer</a
       >
 
-      <!-- Dropdown for selecting debate style -->
       <select id="system" name="Style">
         <option value="BP">British Parliamentary</option>
         <option value="Asian">Asian Parliamentary</option>
@@ -46,13 +29,13 @@
         <option value="NSDC">NSDC</option>
       </select>
 
-      <!-- Volume and Settings Buttons -->
       <div>
         <button id="playButton"><i class="fa fa-volume-up"></i></button>
         <button id="setting" onclick="openPopup()">
           <i class="fa fa-gear"></i>
         </button>
       </div>
+
       <button id="feedback" onclick="openPopupForm()">
         <i class="fa fa-comment"></i>
       </button>
@@ -60,23 +43,19 @@
 
     <hr />
 
-    <!-- Display Section for Timer -->
     <div id="cb-display">
       <h1 id="time">15:00</h1>
     </div>
 
     <hr />
 
-    <!-- Start and Reset Buttons -->
     <div class="button-g">
       <button id="start">Start</button>
       <button id="reset">Reset</button>
     </div>
 
-    <!-- Popup Form container -->
     <div class="overlay" id="popupOverlayForm">
       <div class="popup" id="form">
-        <!-- Close Button for Popup -->
         <span class="close-btn" onclick="closePopupForm()"
           ><i class="fa fa-times"></i
         ></span>
@@ -88,19 +67,16 @@
       </div>
     </div>
 
-    <!-- Popup container -->
     <div class="overlay" id="popupOverlay">
       <div class="popup">
-        <!-- Close Button for Popup -->
         <span class="close-btn" onclick="closePopup()">Save</span>
         <h2>Upload Sound</h2>
-        <!-- Input for Uploading Audio File -->
         <input type="file" accept="audio/*" id="audioFileInput" />
       </div>
     </div>
 
-    <!-- Script -->
     <script src="../js/cb.js"></script>
+    <!-- Uncomment the next line if you have a separate audio.js file -->
     <!-- <script src="../js/module/audio.js"></script> -->
   </body>
 </html>

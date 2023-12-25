@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-  //DOM Variables
+  // DOM Variables
   const debateStyleButton = document.getElementById("system");
   const timeDisplay = document.getElementById("time");
   const startButton = document.getElementById("start");
   const resetButton = document.getElementById("reset");
 
-  //Global Variables
+  // Global Variables
   let timer;
-  let bellLoop;
+
   let system = {
     BP: {
       name: "British Parliamentary",
@@ -26,14 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
       time: [1800],
     },
     list: function () {
-      let list = [];
-      for (let key in this) {
-        if (this.hasOwnProperty(key) && typeof this[key] !== "function") {
-          list.push(this[key].name);
-        }
-      }
-      console.log(list);
-      return list;
+      return Object.values(this)
+        .filter((item) => typeof item !== "function")
+        .map((item) => item.name);
     },
   };
 
@@ -41,97 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let time = timeRule;
   let isRunning = false;
 
-  //Function to create a bell sound
-
-  const bellSound = (i) => {
-    const play = audioHandler.play;
-    if (i == 1) {
-      play();
-      console.log("test");
-    } else {
-      play();
-      setTimeout(play, 500);
-    }
-  };
-
-  // Change Debate System
-  const changeSystem = () => {
-    let index = debateStyleButton.selectedIndex;
-    let style = debateStyleButton.options[index].value;
-    timeRule = system[style].time;
-    time = timeRule;
-    changeDisplay(time);
-    console.log(timeRule);
-  };
-
-  // Change Timer Display
-  const changeDisplay = (number) => {
-    let minute = Math.floor(number / 60);
-    let second = number % 60;
-    function pad(value) {
-      let string = value < 10 ? `0${value}` : `${value}`;
-      return string;
-    }
-    let text = `${pad(minute)}:${pad(second)}`;
-    timeDisplay.innerHTML = text;
-  };
-
-  // Function to Start and Stop
-  const start = () => {
-    if (!isRunning) {
-      isRunning = true;
-      timer = setInterval(counting, 1000);
-      startButton.innerHTML = "Stop";
-    }
-  };
-
-  const stop = () => {
-    if (isRunning) {
-      isRunning = false;
-      clearInterval(timer);
-      clearInterval(bellLoop);
-      startButton.innerHTML = "Start";
-    }
-  };
-
-  // Function to count
-  const counting = () => {
-    if (time === 0) {
-      stop();
-      bellSound(2);
-    } else {
-      time--;
-      changeDisplay(time);
-    }
-  };
-
-  // Event Listerner for HTML Element
-  startButton.addEventListener("click", () => {
-    if (isRunning) {
-      console.log("stop button");
-      stop();
-    } else {
-      console.log("start button");
-      start();
-    }
-  });
-  resetButton.addEventListener("click", () => {
-    console.log("reset button");
-    stop();
-    time = timeRule;
-    changeDisplay(time);
-  });
-  debateStyleButton.addEventListener("change", () => {
-    if (isRunning) {
-      console.log("can't change when timer running");
-    } else {
-      changeSystem();
-      console.log("select");
-    }
-  });
-
   // Audio Handler
-
   function initializeAudioHandler() {
     const audioFileInput = document.getElementById("audioFileInput");
     const playButton = document.getElementById("playButton");
@@ -147,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       xhr.onload = function () {
         const audioData = xhr.response;
-        audioContext = new window.AudioContext();
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         audioContext.decodeAudioData(audioData, function (buffer) {
           audioBuffer = buffer;
@@ -203,6 +108,83 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
   const audioHandler = initializeAudioHandler();
+
+  // Function to create a bell sound
+  const bellSound = (i) => {
+    const play = audioHandler.play;
+    if (i === 1) {
+      play();
+    } else {
+      play();
+      setTimeout(play, 500);
+    }
+  };
+
+  // Change Debate System
+  const changeSystem = () => {
+    const index = debateStyleButton.selectedIndex;
+    const style = debateStyleButton.options[index].value;
+    timeRule = system[style].time;
+    time = timeRule;
+    changeDisplay(time);
+    console.log(timeRule);
+  };
+
+  // Change Timer Display
+  const changeDisplay = (number) => {
+    const minute = Math.floor(number / 60);
+    const second = number % 60;
+
+    function pad(value) {
+      return value < 10 ? `0${value}` : `${value}`;
+    }
+
+    const text = `${pad(minute)}:${pad(second)}`;
+    timeDisplay.innerHTML = text;
+  };
+
+  // Function to Start and Stop
+  const start = () => {
+    if (!isRunning) {
+      isRunning = true;
+      timer = setInterval(counting, 1000);
+      startButton.innerHTML = "Stop";
+    }
+  };
+
+  const stop = () => {
+    if (isRunning) {
+      isRunning = false;
+      clearInterval(timer);
+      startButton.innerHTML = "Start";
+    }
+  };
+
+  // Function to count
+  const counting = () => {
+    if (time === 0) {
+      stop();
+      bellSound(2);
+    } else {
+      time--;
+      changeDisplay(time);
+    }
+  };
+
+  // Event Listener for HTML Elements
+  startButton.addEventListener("click", () => {
+    isRunning ? stop() : start();
+  });
+
+  resetButton.addEventListener("click", () => {
+    stop();
+    time = timeRule;
+    changeDisplay(time);
+  });
+
+  debateStyleButton.addEventListener("change", () => {
+    isRunning ? console.log("can't change when timer running") : changeSystem();
+  });
 });
 
 // Pop Up Function
