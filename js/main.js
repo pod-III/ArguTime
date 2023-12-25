@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
       time: [60, 360, 420, 440, 60, 180, 240, 260],
       poi: [true, false],
     },
-    NSDC: {
-      name: "NSDC",
+    WSDC: {
+      name: "World School",
       speakers: [
         "Prime Minister",
         "Leader of Opposition",

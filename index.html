@@ -34,19 +34,19 @@
         <option value="BP">British Parliamentary</option>
         <option value="Asian">Asian Parliamentary</option>
         <option value="Austral">Australian Parliamentary</option>
-        <option value="NSDC">NSDC</option>
+        <option value="WSDC">World School</option>
       </select>
       <div>
         <!-- Play Button-->
-        <button id="playButton"><i class="fa fa-volume-up"></i></button>
+        <div id="playButton" class="button"><i class="fa fa-volume-up"></i></div>
         <!-- Setting Button -->
-        <button id="setting" onclick="openPopup()">
+        <div id="setting" class="button" onclick="openPopup()">
           <i class="fa fa-gear"></i>
-        </button>
+        </div>
       </div>
-      <button id="feedback" onclick="openPopupForm()">
+      <div id="feedback" class="button" onclick="openPopupForm()">
         <i class="fa fa-comment"></i>
-      </button>
+      </div>
     </div>
     <hr />
 
@@ -54,28 +54,28 @@
     <div id="display">
       <div>
         <!-- Button to Navigate to Previous Section -->
-        <button id="before"><i class="fa fa-arrow-left"></i></button>
+        <div id="before" class="button"><i class="fa fa-arrow-left"></i></div>
       </div>
       <div id="container">
         <!-- Displayed Timer -->
         <h1 id="time">00:00</h1>
         <!-- Point of Information Button -->
-        <button id="poi" disabled>POI</button>
+        <div id="poi" class="button" disabled>POI</div>
       </div>
       <div>
         <!-- Button to Navigate to Next Section -->
-        <button id="next"><i class="fa fa-arrow-right"></i></button>
+        <div id="next" class="button"><i class="fa fa-arrow-right"></i></div>
       </div>
     </div>
     <hr />
     <!-- Displayed Speaker Information -->
-    <h3 id="speaker"></h3>
+    <h3 id="speaker">Prime Minister</h3>
     <hr />
 
     <!-- Start and Reset Buttons -->
     <div class="button-g">
-      <button id="start">Start</button>
-      <button id="reset">Reset</button>
+      <div id="start" class="button">Start</div>
+      <div id="reset" class="button">Reset</div>
     </div>
 
     <!-- Popup Form container -->

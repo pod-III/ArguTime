@@ -22,23 +22,26 @@
         >Debate Timer</a
       >
 
+      <!-- Setting Buttons -->
       <select id="system" name="Style">
         <option value="BP">British Parliamentary</option>
         <option value="Asian">Asian Parliamentary</option>
         <option value="Austral">Australian Parliamentary</option>
-        <option value="NSDC">NSDC</option>
+        <option value="WSDC">World School</option>
       </select>
-
       <div>
-        <button id="playButton"><i class="fa fa-volume-up"></i></button>
-        <button id="setting" onclick="openPopup()">
+        <!-- Play Button-->
+        <div id="playButton" class="button">
+          <i class="fa fa-volume-up"></i>
+        </div>
+        <!-- Setting Button -->
+        <div id="setting" class="button" onclick="openPopup()">
           <i class="fa fa-gear"></i>
-        </button>
+        </div>
       </div>
-
-      <button id="feedback" onclick="openPopupForm()">
+      <div id="feedback" class="button" onclick="openPopupForm()">
         <i class="fa fa-comment"></i>
-      </button>
+      </div>
     </div>
 
     <hr />
@@ -49,13 +52,16 @@
 
     <hr />
 
+    <!-- Start and Reset Buttons -->
     <div class="button-g">
-      <button id="start">Start</button>
-      <button id="reset">Reset</button>
+      <div id="start" class="button">Start</div>
+      <div id="reset" class="button">Reset</div>
     </div>
 
+    <!-- Popup Form container -->
     <div class="overlay" id="popupOverlayForm">
       <div class="popup" id="form">
+        <!-- Close Button for Popup -->
         <span class="close-btn" onclick="closePopupForm()"
           ><i class="fa fa-times"></i
         ></span>
@@ -67,10 +73,13 @@
       </div>
     </div>
 
+    <!-- Popup container -->
     <div class="overlay" id="popupOverlay">
       <div class="popup">
+        <!-- Close Button for Popup -->
         <span class="close-btn" onclick="closePopup()">Save</span>
         <h2>Upload Sound</h2>
+        <!-- Input for Uploading Audio File -->
         <input type="file" accept="audio/*" id="audioFileInput" />
       </div>
     </div>

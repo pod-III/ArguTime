@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
       name: "Asian Parliamentary",
       time: [1800],
     },
-    NSDC: {
-      name: "NSDC",
+    WSDC: {
+      name: "WSDC",
       time: [1800],
     },
     Austral: {
