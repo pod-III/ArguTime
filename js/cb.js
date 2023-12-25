@@ -3,10 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const debateStyleButton = document.getElementById("system");
   const timeDisplay = document.getElementById("time");
   const startButton = document.getElementById("start");
-  const stopButton = document.getElementById("stop");
   const resetButton = document.getElementById("reset");
-  const background = document.getElementById("display");
-  const bellButton = document.getElementById("bell");
 
   //Global Variables
   let timer;
@@ -39,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return list;
     },
   };
-  
+
   let timeRule = system["BP"].time;
   let time = timeRule;
   let isRunning = false;
@@ -47,12 +44,13 @@ document.addEventListener("DOMContentLoaded", function () {
   //Function to create a bell sound
 
   const bellSound = (i) => {
+    const play = audioHandler.play;
     if (i == 1) {
-      audioHandler.play();
+      play();
       console.log("test");
     } else {
-      audioHandler.play();
-      console.log("test");
+      play();
+      setTimeout(play, 500);
     }
   };
 

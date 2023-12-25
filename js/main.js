@@ -147,14 +147,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to create a bell sound
   const bellSound = (i) => {
-    // const bell_1 = document.getElementById("bellAudio1");
-    // const bell_2 = document.getElementById("bellAudio2");
+    const play = audioHandler.play;
     if (i == 1) {
-      audioHandler.play();
+      play();
       console.log("test");
     } else {
-      audioHandler.play();
-      console.log("test");
+      play();
+      setTimeout(play, 500);
     }
   };
 
@@ -260,7 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
     resetButton.style.display = "inline";
     startButton.innerHTML = "Stop";
     isRunning = true;
-    timer = setInterval(counting, 1000);
+    timer = setInterval(counting, 100);
   };
 
   // Function to stop the counting process
