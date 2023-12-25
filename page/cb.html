@@ -53,6 +53,9 @@
           <i class="fa fa-gear"></i>
         </button>
       </div>
+      <button id="feedback" onclick="openPopupForm()">
+        <i class="fa fa-comment"></i>
+      </button>
     </div>
 
     <hr />
@@ -68,6 +71,21 @@
     <div class="button-g">
       <button id="start">Start</button>
       <button id="reset">Reset</button>
+    </div>
+
+    <!-- Popup Form container -->
+    <div class="overlay" id="popupOverlayForm">
+      <div class="popup" id="form">
+        <!-- Close Button for Popup -->
+        <span class="close-btn" onclick="closePopupForm()"
+          ><i class="fa fa-times"></i
+        ></span>
+        <h2>Submit Feedback</h2>
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfhh36_kWxw6-5LiZPP7pcZPS60qOtqd35nocfzUX4Ydqaqlg/viewform?embedded=true"
+          >Loading…</iframe
+        >
+      </div>
     </div>
 
     <!-- Popup container -->

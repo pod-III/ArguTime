@@ -213,3 +213,12 @@ function openPopup() {
 function closePopup() {
   document.getElementById("popupOverlay").style.display = "none";
 }
+
+// Pop Up Function
+function openPopupForm() {
+  document.getElementById("popupOverlayForm").style.display = "flex";
+}
+
+function closePopupForm() {
+  document.getElementById("popupOverlayForm").style.display = "none";
+}
