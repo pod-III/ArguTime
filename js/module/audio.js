@@ -1,5 +1,5 @@
 // Audio Handler
-document.addEventListener("DOMContentLoaded", function () {
+function initializeAudioHandler() {
   const audioFileInput = document.getElementById("audioFileInput");
   const playButton = document.getElementById("playButton");
   let audioContext;
@@ -55,4 +55,19 @@ document.addEventListener("DOMContentLoaded", function () {
       source.start();
     }
   });
+
+  return {
+    play: function () {
+      if (audioContext && audioBuffer) {
+        const source = audioContext.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(audioContext.destination);
+        source.start();
+      }
+    },
+  };
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const audioHandler = initializeAudioHandler();
 });

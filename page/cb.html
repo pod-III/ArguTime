@@ -4,7 +4,7 @@
     <!-- Meta tags for character set and viewport settings -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Bootstrap CSS (commented out, you can uncomment if needed) -->
     <!--
     <link
@@ -24,16 +24,20 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/style.css" />
-    
+
     <!-- Page Title -->
     <title>Case Building</title>
   </head>
   <body>
     <!-- Navigation Links -->
     <div>
-      <a href="./cb.html" class="button" onclick="buttonClick()">Casebuilding Timer</a>
-      <a href="../index.html" class="button" onclick="buttonClick()">Debate Timer</a>
-      
+      <a href="./cb.html" class="button" onclick="buttonClick()"
+        >Casebuilding Timer</a
+      >
+      <a href="../index.html" class="button" onclick="buttonClick()"
+        >Debate Timer</a
+      >
+
       <!-- Dropdown for selecting debate style -->
       <select id="system" name="Style">
         <option value="BP">British Parliamentary</option>
@@ -43,18 +47,18 @@
       </select>
 
       <!-- Volume and Settings Buttons -->
-      <button id="playButton">
-        <i class="fa fa-volume-up"></i>
-      </button>
-      <button id="setting" onclick="openPopup()">
-        <i class="fa fa-gear"></i>
-      </button>
+      <div>
+        <button id="playButton"><i class="fa fa-volume-up"></i></button>
+        <button id="setting" onclick="openPopup()">
+          <i class="fa fa-gear"></i>
+        </button>
+      </div>
 
       <!-- Audio Elements -->
       <audio id="bellAudio1" src="../media/bell.mp3"></audio>
       <audio id="bellAudio2" src="../media/bell2.mp3"></audio>
     </div>
-    
+
     <!-- Horizontal Rule -->
     <hr />
 
@@ -62,7 +66,7 @@
     <div id="cb-display">
       <h1 id="time">15:00</h1>
     </div>
-    
+
     <!-- Horizontal Rule -->
     <hr />
 
@@ -71,7 +75,7 @@
       <button id="start">Start</button>
       <button id="reset">Reset</button>
     </div>
-    
+
     <!-- Popup Overlay for Settings -->
     <div class="overlay" id="popupOverlay">
       <div class="popup">
@@ -82,7 +86,7 @@
         <input type="file" accept="audio/*" id="audioFileInput" />
       </div>
     </div>
-    
+
     <!-- JavaScript Files -->
     <script src="../js/cb.js"></script>
     <!-- <script src="../js/module/audio.js"></script> -->
