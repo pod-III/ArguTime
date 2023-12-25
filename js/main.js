@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
     resetButton.style.display = "inline";
     startButton.innerHTML = "Stop";
     isRunning = true;
-    timer = setInterval(counting, 100);
+    timer = setInterval(counting, 1000);
   };
 
   // Function to stop the counting process
@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", function () {
         poiButton.innerHTML = "POI";
         isPoiAllowed = false;
       }
-    }, 100);
+    }, 1000);
   };
 
   // Initial DOM edit
