@@ -146,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to Start and Stop
   const start = () => {
     if (!isRunning) {
+      resetButton.style.display = "inline"
       isRunning = true;
       timer = setInterval(counting, 1000);
       startButton.innerHTML = "Stop";
@@ -179,6 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
   resetButton.addEventListener("click", () => {
     stop();
     time = timeRule;
+    resetButton.style.display = "none"
     changeDisplay(time);
   });
 
