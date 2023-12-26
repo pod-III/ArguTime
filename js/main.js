@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       poiRule = system[styles].poi[0];
     }
-    poiButton.style.display = poiRule ? "inline" : "none";
+    poiButton.style.display = poiRule ? "inline-block" : "none";
   };
 
   // Function to create a bell sound
