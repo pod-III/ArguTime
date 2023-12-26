@@ -99,10 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let isRunning = false;
   let isPoiAllowed = false;
 
-  // Initial Edit for DOM
-  beforeButton.style.visibility = "hidden";
-  resetButton.style.display = "none";
-
   // Audio Handler
   function initializeAudioHandler() {
     const audioFileInput = document.getElementById("audioFileInput");
@@ -251,12 +247,13 @@ document.addEventListener("DOMContentLoaded", function () {
     changeDisplay(time);
   };
 
-  // Check POI Button
+  // Change POI Button Color
   const poiColor = function (i) {
     poiButton.style.backgroundColor = i === 1 ? "#28a745" : "grey";
-    poiButton.disabled = i === 1? false : true
+    poiButton.disabled = i === 1 ? false : true;
   };
 
+  // Check POI Button
   const poiButtonChecker = () => {
     const rule1 = time >= timeRule[0];
     const rule2 = time <= timeRule[1] || time <= timeRule[5];
@@ -336,8 +333,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to count normal timer/stopwatch
   const counting = () => {
-    timeKeeperFunction();
     time++;
+    timeKeeperFunction();
     changeDisplay(time);
   };
 
@@ -368,19 +365,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   resetButton.addEventListener("click", () => {
-    resetButton.style.display = "none";
     stop();
     time = 0;
+    resetButton.style.display = "none";
     changeDisplay(0);
-    poiButtonChecker()
+    poiButtonChecker();
   });
 
   poiButton.addEventListener("click", () => {
     if (time >= 60 && time <= 360 && isRunning) {
       isPoiAllowed = !isPoiAllowed;
       countPoi();
-    } else {
-      console.log("not time yet");
     }
   });
 
