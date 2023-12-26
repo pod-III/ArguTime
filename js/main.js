@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function that starts the counting process
   const start = () => {
-    resetButton.style.display = "inline";
+    resetButton.style.display = "inline-block";
     startButton.innerHTML = "Stop";
     isRunning = true;
     timer = setInterval(counting, 1000);

@@ -2,7 +2,7 @@ body {
   text-align: center;
   font-family: "Arial", sans-serif;
   padding: 0;
-  background-color: white;
+  background-color: #f0f0f0;
   position: relative;
 }
 
@@ -17,11 +17,15 @@ a {
   border-radius: 5px;
   cursor: pointer;
   color: #fff;
-  background-color: #007bff;
+  background-color: #3a98c4;
 }
 
 .button:active {
-  background-color: #007bff79;
+  background-color: #ADC4CE;
+}
+
+.button-nav {
+  cursor: pointer;
 }
 
 #poi {
@@ -32,7 +36,7 @@ a {
 }
 
 #poi:active {
-  background-color: #007bff79;
+  background-color: #ADC4CE;
 }
 
 .overlay {
@@ -50,13 +54,14 @@ a {
 
 .popup {
   position: relative;
-  background: #fff;
+  background: #f1f0e8;
   border-radius: 5px;
   padding: 10px;
   max-width: 80%;
   max-height: 80%;
   overflow: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-top: 6vh;
 }
 
 .close-btn {
@@ -74,14 +79,14 @@ input[type="file"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #f1f0e8;
   color: #333;
 }
 
 input[type="file"]::file-selector-button {
-  border: 1px solid #007bff;
-  color: #007bff;
-  background-color: #fff;
+  border: 1px solid #3a98c4;
+  color: #3a98c4;
+  background-color: #f1f0e8;
   border-radius: 5px;
   padding: 8px 16px;
   cursor: pointer;
@@ -93,7 +98,7 @@ select {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin: 10px;
-  background-color: #fff;
+  background-color: #f1f0e8;
   color: #333;
 }
 
@@ -108,7 +113,7 @@ select::after {
 }
 
 select option {
-  background-color: #fff;
+  background-color: #f1f0e8;
   color: #333;
 }
 
@@ -120,8 +125,9 @@ hr {
 
 #time {
   font-size: 5em;
-  color: #007bff;
+  color: #3a98c4;
   font-weight: bolder;
+  text-align: center;
 }
 
 #speaker {
@@ -154,10 +160,6 @@ hr {
   padding: 0px;
 }
 
-#time {
-  text-align: center;
-}
-
 #before,
 #next {
   width: 10vw;
@@ -186,4 +188,53 @@ iframe {
 
 #reset {
   display: none;
+}
+
+
+section {
+  padding: 30px 0;
+}
+.buffer {
+  width: 2vw;
+  height: 15vh;
+  margin: 3rem 0;
+}
+hr {
+  visibility: hidden;
+}
+.bgc-1 {
+  background-color: #3a98c4;
+}
+.bgc-2 {
+  background-color: #ADC4CE;
+}
+.bgc-3 {
+  background-color: #eee0c9;
+}
+.bgc-4 {
+  background-color: #f1f0e8;
+}
+a {
+  color:black;
+  text-decoration: none;
+}
+
+.sound-container {
+  margin-top: 25%;
+}
+
+/* Add this style for the select element */
+#system {
+  padding: 8px 16px; /* Adjust padding as needed */
+  border: 1px solid #f1f0e8; /* Add a border */
+  border-radius: 5px; /* Add border-radius for rounded corners */
+  background-color: #3a98c4; /* Set background color */
+  color: #f1f0e8; /* Set text color */
+  margin: 0 10px; /* Adjust margin as needed */
+}
+
+#system option {
+  background-color: #3a98c4;
+  color: #f1f0e8;
+  font-weight: bold;
 }

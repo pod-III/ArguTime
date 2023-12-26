@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Uncomment the following line if you need Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <link rel="icon" href="../media/favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -14,36 +16,82 @@
     <title>Case Building</title>
   </head>
   <body>
-    <div>
-      <a href="./cb.html" class="button" onclick="buttonClick()"
-        >Casebuilding Timer</a
-      >
-      <a href="../index.html" class="button" onclick="buttonClick()"
-        >Debate Timer</a
-      >
-
-      <!-- Setting Buttons -->
-      <select id="system" name="Style">
-        <option value="BP">British Parliamentary</option>
-        <option value="Asian">Asian Parliamentary</option>
-        <option value="Austral">Australian Parliamentary</option>
-        <option value="WSDC">World School</option>
-      </select>
-      <div>
-        <!-- Play Button-->
-        <div id="playButton" class="button">
-          <i class="fa fa-volume-up"></i>
-        </div>
-        <!-- Setting Button -->
-        <div id="setting" class="button" onclick="openPopup()">
-          <i class="fa fa-gear"></i>
+    <nav
+      class="navbar navbar-expand-md fixed-top navbar-dark bgc-1 border-bottom border-3 py-3"
+    >
+      <div class="container-xl">
+        <a href="#intro" class="navbar-brand">
+          <span class="fw-bold"> CASEBUILDING TIMER </span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#main-nav"
+          aria-controls="main-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end align-center"
+          id="main-nav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a
+                href="../index.html"
+                class="nav-link text-center text-light fw-bold"
+                >DEBATE TIMER</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                href="./cb.html"
+                class="nav-link text-center text-light fw-bold"
+                >CASEBUILDING TIMER</a
+              >
+            </li>
+            <li class="nav-item">
+              <select
+                id="system"
+                name="Style"
+                class="text-center text-light fw-bold"
+              >
+                <option value="BP">BRITISH PARLIAMENTARY</option>
+                <option value="Asian">ASIAN PARLIAMENTARY</option>
+                <option value="Austral">AUSTRALIAN PARLIAMENTARY</option>
+                <option value="WSDC">WORLD SCHOOL</option>
+              </select>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link text-center text-light fw-bold button-nav"
+                onclick="openPopupForm()"
+              >
+                FEEDBACK
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div id="feedback" class="button" onclick="openPopupForm()">
-        <i class="fa fa-comment"></i>
+    </nav>
+    <!-- Sound Control -->
+    <section id="sound">
+      <div class="d-flex" style="height: 10vh">
+        <div class="vr"></div>
       </div>
-    </div>
 
+      <!-- Play Button-->
+      <div id="playButton" class="button">
+        <i class="fa fa-volume-up"></i>
+      </div>
+      <!-- Setting Button -->
+      <div id="setting" class="button" onclick="openPopup()">
+        <i class="fa fa-gear"></i>
+      </div>
+    </section>
     <hr />
 
     <div id="cb-display">
@@ -85,6 +133,7 @@
     </div>
 
     <script src="../js/cb.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Uncomment the next line if you have a separate audio.js file -->
     <!-- <script src="../js/module/audio.js"></script> -->
   </body>

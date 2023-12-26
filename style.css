@@ -1,0 +1,27 @@
+section {
+    padding: 30px 0;
+  }
+  .buffer {
+    width: 2vw;
+    height: 15vh;
+    margin: 3rem 0;
+  }
+  hr {
+    visibility: hidden;
+  }
+  .bgc-1 {
+    background-color: #96B6C5;
+  }
+  .bgc-2 {
+    background-color: #ADC4CE;
+  }
+  .bgc-3 {
+    background-color: #eee0c9;
+  }
+  .bgc-4 {
+    background-color: #f1f0e8;
+  }
+  a {
+    color:black;
+    text-decoration: none;
+  }
