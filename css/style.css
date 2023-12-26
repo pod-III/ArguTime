@@ -6,48 +6,32 @@ body {
   position: relative;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
 a {
   text-decoration: none;
 }
 
-.button,
-button {
+.button {
   display: inline-block;
   padding: 10px 20px;
   margin: 10px;
   border-radius: 5px;
   cursor: pointer;
   color: #fff;
-}
-
-button {
-  box-shadow: none;
-  background-color: #007bff;
-}
-
-button:active {
-  background-color: #007bff79;
-}
-
-#poi {
-  box-shadow: none;
-  background-color: grey;
-}
-
-#poi:active {
-  background-color: #007bff79;
-}
-
-.button {
   background-color: #007bff;
 }
 
 .button:active {
+  background-color: #007bff79;
+}
+
+#poi {
+  background-color: grey;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+#poi:active {
   background-color: #007bff79;
 }
 
@@ -134,14 +118,10 @@ hr {
   border-top: 1px solid #ccc;
 }
 
-#display {
-  text-align: center;
-  margin: 20px 0;
-}
-
 #time {
   font-size: 5em;
   color: #007bff;
+  font-weight: bolder;
 }
 
 #speaker {
@@ -159,13 +139,19 @@ hr {
   align-items: center;
   margin: auto 0;
   padding: 0;
+  text-align: center;
 }
 
 #before,
-#container,
 #next {
   margin: 0;
   padding: 10px;
+}
+
+#container {
+  max-width: 800px;
+  margin: 0;
+  padding: 0px;
 }
 
 #time {
