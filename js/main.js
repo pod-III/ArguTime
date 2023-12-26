@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // SetInterval declaration as global variables
   let timer;
   let bellLoop;
+  let poiTimer;
 
   // Debating System Rule as object
   let system = {
@@ -88,16 +89,24 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // Global Variables
-  let speakersTime = [];
   let styles = "BP";
-  let poiRule = system[styles].poi[0];
   let timeRule = system[styles].time;
   let speakerOrder = 0;
   let speaker = system["BP"].speakers[speakerOrder];
+  let isRunning = false;
+  let speakersTime = [];
+  let microSecond = 0;
+  let poiMicroSecond = 0;
   let time = 0;
   let poiSecond = 0;
-  let isRunning = false;
+
+
+  // POI Variables
+  let poiRule = system[styles].poi[0];
   let isPoiAllowed = false;
+  let isPoiRunning = false;
+  let poiRule1 = time >= timeRule[0];
+  let poiRule2 = time <= timeRule[1] || time <= timeRule[5];
 
   // Audio Handler
   function initializeAudioHandler() {
@@ -195,16 +204,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // Function to check Poi Rule
-  const checkPOI = () => {
-    if (speakerOrder > 5) {
-      poiRule = system[styles].poi[1];
-    } else {
-      poiRule = system[styles].poi[0];
-    }
-    poiButton.style.display = poiRule ? "inline-block" : "none";
-  };
-
   // Function to create a bell sound
   const bellSound = (i) => {
     const play = audioHandler.play;
@@ -247,36 +246,17 @@ document.addEventListener("DOMContentLoaded", function () {
     changeDisplay(time);
   };
 
-  // Change POI Button Color
-  const poiColor = function (i) {
-    poiButton.style.backgroundColor = i === 1 ? "#5eb97d" : "grey";
-    poiButton.disabled = i === 1 ? false : true;
-  };
-
-  // Check POI Button
-  const poiButtonChecker = () => {
-    const rule1 = time >= timeRule[0];
-    const rule2 = time <= timeRule[1] || time <= timeRule[5];
-    if (poiRule) {
-      if (rule1 && rule2) {
-        poiColor(1);
-      } else {
-        poiColor(2);
-      }
-    }
-  };
-
   // Function to bell a sound based on the amount of time passed
   const timeKeeperFunction = () => {
     if (timeRule.includes(time)) {
       if (speakerOrder < 7) {
         switch (time) {
           case timeRule[0]:
-            poiColor(1);
+            poiButtonChecker()
             bellSound(1);
             break;
           case timeRule[1]:
-            poiColor(2);
+            poiButtonChecker()
             bellSound(1);
             break;
           case timeRule[2]:
@@ -293,11 +273,11 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         switch (time) {
           case timeRule[4]:
-            poiColor(1);
+            poiButtonChecker()
             bellSound(1);
             break;
           case timeRule[5]:
-            poiColor(2);
+            poiButtonChecker()
             bellSound(1);
             break;
           case timeRule[6]:
@@ -319,9 +299,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const start = () => {
     resetButton.style.display = "inline-block";
     startButton.innerHTML = '<i class="fa fa-pause"></i> Pause';
-    debateStyleButton.disabled = true
+    debateStyleButton.disabled = true;
     isRunning = true;
-    timer = setInterval(counting, 1000);
+    timer = setInterval(counting, 100);
+    if (isPoiRunning) {
+      startPoi()
+    }
   };
 
   // Function to stop the counting process
@@ -330,29 +313,97 @@ document.addEventListener("DOMContentLoaded", function () {
     isRunning = false;
     clearInterval(timer);
     clearInterval(bellLoop);
+    stopPoi(2)
   };
 
   // Function to count normal timer/stopwatch
   const counting = () => {
-    time++;
-    timeKeeperFunction();
-    changeDisplay(time);
+    microSecond++
+    if (microSecond === 10) {
+      time++;
+      timeKeeperFunction();
+      changeDisplay(time);
+      microSecond = 0
+    }
   };
 
-  // Function to count POI timer/stopwatch
-  const countPoi = () => {
-    poiButton.innerHTML = poiSecond;
-    const poiTimer = setInterval(() => {
-      poiSecond++;
-      poiButton.innerHTML = poiSecond;
-      if (poiSecond === 16 || !isPoiAllowed || !isRunning) {
-        bellSound(1);
-        poiSecond = 0;
-        clearInterval(poiTimer);
-        poiButton.innerHTML = "POI";
-        isPoiAllowed = false;
+  // POI FUNCTIONS
+  // Function to check Poi Rule
+  const checkPOI = () => {
+    if (speakerOrder > 5) {
+      poiRule = system[styles].poi[1];
+    } else {
+      poiRule = system[styles].poi[0];
+    }
+    poiButton.style.display = poiRule ? "inline-block" : "none";
+  };
+
+  // Function to check current POI time rule
+  const checkPoiTime = () => {
+    poiRule1 = time >= timeRule[0];
+    poiRule2 = time <= timeRule[1] || time <= timeRule[5];
+    console.log(poiRule1, poiRule2)
+    if (poiRule1 && poiRule2) {
+      isPoiAllowed = true
+    } else {
+      isPoiAllowed = false
+    }
+  };
+
+  // Change POI Button Color
+  const poiColor = function (i) {
+    poiButton.style.backgroundColor = i === 1 ? "#5eb97d" : "grey";
+    poiButton.disabled = i === 1 ? false : true;
+    console.log("called")
+  };
+
+  // Check POI Button
+  const poiButtonChecker = () => {
+    checkPoiTime();
+    if (poiRule) {
+      if (isPoiAllowed) {
+        poiColor(1);
+      } else {
+        poiColor(2);
       }
-    }, 1000);
+    }
+  };
+
+  // Function to start counting POI timer/stopwatch
+  const startPoi = () => {
+    checkPoiTime();
+    if (isPoiAllowed && isRunning) {
+      isPoiRunning = true;
+      poiButton.innerHTML = poiSecond;
+      poiTimer = setInterval(countPoi, 100);
+    }
+  };
+
+  // Function to stop POI counting
+  const stopPoi = (i) => {
+    if (i === 1) {
+      poiSecond = 0;
+      clearInterval(poiTimer);
+      poiButton.innerHTML = "POI";
+      isPoiRunning = false;
+    } else {
+      clearInterval(poiTimer);
+    }
+  };
+
+  // Funtion too count the second of POI
+  const countPoi = () => {
+    poiMicroSecond++
+    if (poiMicroSecond === 10) {
+      if (poiSecond === 15) {
+        bellSound(1);
+        stopPoi();
+      } else {
+        poiSecond++;
+        poiButton.innerHTML = poiSecond;
+        poiMicroSecond = 0
+      }
+    }
   };
 
   // Event Listeners for the HTML Elements
@@ -362,18 +413,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   resetButton.addEventListener("click", () => {
     stop();
+    stopPoi(1)
     time = 0;
     resetButton.style.display = "none";
-    debateStyleButton.disabled = false
+    debateStyleButton.disabled = false;
     changeDisplay(0);
     poiButtonChecker();
   });
 
   poiButton.addEventListener("click", () => {
-    if (time >= 60 && time <= 360 && isRunning) {
-      isPoiAllowed = !isPoiAllowed;
-      countPoi();
-    }
+    isPoiRunning && isRunning ? stopPoi(1) : startPoi();
   });
 
   debateStyleButton.addEventListener("change", () => {
