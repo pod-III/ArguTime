@@ -63,7 +63,7 @@
                 <option value="BP">BRITISH PARLIAMENTARY</option>
                 <option value="Asian">ASIAN PARLIAMENTARY</option>
                 <option value="Austral">AUSTRALIAN PARLIAMENTARY</option>
-                <option value="WSDC">WORLD SCHOOL</option>
+                <option value="WSDC">WORLD SCHOOLS</option>
               </select>
             </li>
             <li class="nav-item">
@@ -118,8 +118,12 @@
 
     <!-- Start and Reset Buttons -->
     <div class="button-g">
-      <div id="start" class="button fw-bold">Start</div>
-      <div id="reset" class="button fw-bold">Reset</div>
+      <div id="start" class="button fw-bold">
+        <i class="fa fa-play"></i> Start
+      </div>
+      <div id="reset" class="button fw-bold">
+        <i class="fa fa-refresh"></i> Reset
+      </div>
     </div>
 
     <!-- Popup Form container -->
@@ -140,11 +144,26 @@
     <!-- Popup container -->
     <div class="overlay" id="popupOverlay">
       <div class="popup">
-        <!-- Close Button for Popup -->
-        <span class="close-btn" onclick="closePopup()">Save</span>
-        <h2>Upload Sound</h2>
+        <h1 class="fw-bold">Sound Setting</h1>
+        <!-- <div>
+          <h5>Pick a sound:</h5>
+          <select
+            id="soundpic"
+            name="Sound"
+            class="text-center text-light fw-bold"
+          >
+            <option value="bell">Bell</option>
+            <option value="cow">Cow</option>
+          </select>
+        </div> -->
+
+        <h5>Upload costum sound:</h5>
         <!-- Input for Uploading Audio File -->
         <input type="file" accept="audio/*" id="audioFileInput" />
+        <!-- Close Button for Popup -->
+        <div class="close-btn button fw-bold" onclick="closePopup()">
+          <i class="fa fa-save"></i> Save
+        </div>
       </div>
     </div>
 

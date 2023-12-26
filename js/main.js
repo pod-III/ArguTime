@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", function () {
     stop();
     speaker = system[styles].speakers[speakerOrder];
     speakerText.innerHTML = speaker;
-    startButton.innerHTML = "Start";
+    startButton.innerHTML = '<i class="fa fa-play"></i> Start';
   };
 
   // Function to change the debate system
@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Change POI Button Color
   const poiColor = function (i) {
-    poiButton.style.backgroundColor = i === 1 ? "#28a745" : "grey";
+    poiButton.style.backgroundColor = i === 1 ? "#5eb97d" : "grey";
     poiButton.disabled = i === 1 ? false : true;
   };
 
@@ -318,14 +318,15 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function that starts the counting process
   const start = () => {
     resetButton.style.display = "inline-block";
-    startButton.innerHTML = "Stop";
+    startButton.innerHTML = '<i class="fa fa-pause"></i> Pause';
+    debateStyleButton.disabled = true
     isRunning = true;
     timer = setInterval(counting, 1000);
   };
 
   // Function to stop the counting process
   const stop = () => {
-    startButton.innerHTML = "Start";
+    startButton.innerHTML = '<i class="fa fa-play"></i> Start';
     isRunning = false;
     clearInterval(timer);
     clearInterval(bellLoop);
@@ -354,11 +355,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1000);
   };
 
-  // Initial DOM edit
-  speakerText.innerHTML = speaker;
-  resetButton.style.display = "none";
-  buttonDisplay();
-
   // Event Listeners for the HTML Elements
   startButton.addEventListener("click", () => {
     isRunning ? stop() : start();
@@ -368,6 +364,7 @@ document.addEventListener("DOMContentLoaded", function () {
     stop();
     time = 0;
     resetButton.style.display = "none";
+    debateStyleButton.disabled = false
     changeDisplay(0);
     poiButtonChecker();
   });

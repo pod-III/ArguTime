@@ -65,12 +65,14 @@ a {
 }
 
 .close-btn {
-  position: absolute;
+  /* position: absolute;
   top: 10px;
-  right: 10px;
-  font-size: 20px;
-  color: #333;
+  right: 10px; */
   cursor: pointer;
+}
+
+input {
+  width: 100%;
 }
 
 input[type="file"] {
@@ -115,6 +117,16 @@ select::after {
 select option {
   background-color: #f1f0e8;
   color: #333;
+}
+
+#soundpic {
+  display: inline;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #3a98c4;
 }
 
 hr {

@@ -146,10 +146,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to Start and Stop
   const start = () => {
     if (!isRunning) {
-      resetButton.style.display = "inline"
+      resetButton.style.display = "inline-block"
       isRunning = true;
       timer = setInterval(counting, 1000);
-      startButton.innerHTML = "Stop";
+      startButton.innerHTML = '<i class="fa fa-pause"></i> Pause';
     }
   };
 
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isRunning) {
       isRunning = false;
       clearInterval(timer);
-      startButton.innerHTML = "Start";
+      startButton.innerHTML = '<i class="fa fa-play"></i> Start';
     }
   };
 
