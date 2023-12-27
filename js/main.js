@@ -430,6 +430,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   beforeButton.addEventListener("click", () => {
+    speakersTime[speakerOrder] = time;
     speakerOrder--;
     updateSpeaker();
     buttonDisplay();
