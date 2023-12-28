@@ -86,7 +86,7 @@
       </div>
 
       <!-- Play Button-->
-      <div id="playButton" class="button">
+      <div id="playButton" class="button" onclick="playSound()">
         <i class="fa fa-volume-up"></i>
       </div>
       <!-- Setting Button -->
@@ -145,24 +145,32 @@
     <div class="overlay" id="popupOverlay">
       <div class="popup">
         <h1 class="fw-bold">Sound Setting</h1>
-        <!-- <div>
+        <div>
           <h5>Pick a sound:</h5>
           <select
             id="soundpic"
             name="Sound"
             class="text-center text-light fw-bold"
           >
+            <option value="" disabled selected>Pick a sound</option>
             <option value="bell">Bell</option>
             <option value="cow">Cow</option>
           </select>
-        </div> -->
+        </div>
 
         <h5>Upload costum sound:</h5>
         <!-- Input for Uploading Audio File -->
-        <input type="file" accept="audio/*" id="audioFileInput" />
+        <div class="input-container"s>
+          <input type="file" accept="audio/*" id="audioFileInput" />
+          <input type="checkbox" name="agree" value="yes" id="uploadCheckbox" />
+        </div>
+
+        <div class="button fw-bold" onclick="closePopUp()">
+          <i id="cancelsound" class="fa fa-times"></i> Cancel
+        </div>
         <!-- Close Button for Popup -->
-        <div class="close-btn button fw-bold" onclick="closePopup()">
-          <i class="fa fa-save"></i> Save
+        <div class="button fw-bold" onclick="saveSound()">
+          <i id="savesound" class="fa fa-save"></i> Save
         </div>
       </div>
     </div>

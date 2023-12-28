@@ -21,7 +21,7 @@ a {
 }
 
 .button:active {
-  background-color: #ADC4CE;
+  background-color: #adc4ce;
 }
 
 .button-nav {
@@ -36,7 +36,7 @@ a {
 }
 
 #poi:active {
-  background-color: #ADC4CE;
+  background-color: #adc4ce;
 }
 
 .overlay {
@@ -65,10 +65,12 @@ a {
 }
 
 .close-btn {
-  /* position: absolute;
+  position: absolute;
   top: 10px;
-  right: 10px; */
+  right: 10px;
   cursor: pointer;
+  font-size: 25px;
+  color: rgb(201, 47, 47);
 }
 
 input {
@@ -120,13 +122,20 @@ select option {
 }
 
 #soundpic {
-  display: inline;
+  display: inline-block;
   padding: 10px 20px;
   margin: 10px;
   border-radius: 5px;
   cursor: pointer;
   color: #fff;
   background-color: #3a98c4;
+  text-align: center;
+}
+
+#soundpic option {
+  background-color: #f1f0e8;
+  color: #333;
+  text-align: center;
 }
 
 hr {
@@ -202,7 +211,6 @@ iframe {
   display: none;
 }
 
-
 section {
   padding: 30px 0;
 }
@@ -218,7 +226,7 @@ hr {
   background-color: #3a98c4;
 }
 .bgc-2 {
-  background-color: #ADC4CE;
+  background-color: #adc4ce;
 }
 .bgc-3 {
   background-color: #eee0c9;
@@ -227,7 +235,7 @@ hr {
   background-color: #f1f0e8;
 }
 a {
-  color:black;
+  color: black;
   text-decoration: none;
 }
 
@@ -249,4 +257,16 @@ a {
   background-color: #3a98c4;
   color: #f1f0e8;
   font-weight: bold;
+}
+
+/* Use flexbox for layout */
+.input-container {
+  display: grid;
+  grid-template-columns: 15fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+/* Add margin between the two inputs */
+.input-container input {
+  width: 95%;
 }
