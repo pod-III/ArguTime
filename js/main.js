@@ -397,7 +397,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (poiMicroSecond === 10) {
       if (poiSecond === 15) {
         bellSound(1);
-        stopPoi();
+        stopPoi(1);
       } else {
         poiSecond++;
         poiButton.innerHTML = poiSecond;
@@ -430,6 +430,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   beforeButton.addEventListener("click", () => {
+    speakersTime[speakerOrder] = time;
     speakerOrder--;
     updateSpeaker();
     buttonDisplay();
