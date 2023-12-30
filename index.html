@@ -17,6 +17,7 @@
     <title>Debating Timer</title>
   </head>
   <body>
+    <!-- Navigation Bar -->
     <nav
       class="navbar navbar-expand-md fixed-top navbar-dark bgc-1 border-bottom border-3 py-3"
     >
@@ -68,8 +69,8 @@
             </li>
             <li class="nav-item">
               <a
+                id="feedback-button"
                 class="nav-link text-center text-light fw-bold button-nav"
-                onclick="openPopupForm()"
               >
                 FEEDBACK
               </a>
@@ -89,8 +90,8 @@
       <div id="playButton" class="button" onclick="playSound()">
         <i class="fa fa-volume-up"></i>
       </div>
-      <!-- Setting Button -->
-      <div id="setting" class="button" onclick="openPopup()">
+      <!-- Sound Setting Button -->
+      <div id="setting" class="button open-btn">
         <i class="fa fa-gear"></i>
       </div>
     </section>
@@ -116,7 +117,7 @@
       </div>
     </div>
 
-    <!-- Start and Reset Buttons -->
+    <!-- Timer Start and Reset Buttons -->
     <div class="button-g">
       <div id="start" class="button fw-bold">
         <i class="fa fa-play"></i> Start
@@ -126,11 +127,11 @@
       </div>
     </div>
 
-    <!-- Popup Form container -->
+    <!-- Popup For Feedback Form -->
     <div class="overlay" id="popupOverlayForm">
       <div class="popup" id="form">
         <!-- Close Button for Popup -->
-        <span class="close-btn" onclick="closePopupForm()"
+        <span id="close-btn-form" class="close-btn"
           ><i class="fa fa-times"></i
         ></span>
         <h2>Submit Feedback</h2>
@@ -141,7 +142,7 @@
       </div>
     </div>
 
-    <!-- Popup container -->
+    <!-- Popup for Sound Setting -->
     <div class="overlay" id="popupOverlay">
       <div class="popup">
         <h1 class="fw-bold">Sound Setting</h1>
@@ -165,11 +166,11 @@
           <input type="checkbox" name="agree" value="yes" id="uploadCheckbox" />
         </div>
 
-        <div class="button fw-bold" onclick="closePopUp()">
+        <div id="close-btn-sound" class="button fw-bold close-button-sound">
           <i id="cancelsound" class="fa fa-times"></i> Cancel
         </div>
         <!-- Close Button for Popup -->
-        <div class="button fw-bold" onclick="saveSound()">
+        <div class="button fw-bold close-button-sound" onclick="saveSound()">
           <i id="savesound" class="fa fa-save"></i> Save
         </div>
       </div>
@@ -178,7 +179,5 @@
     <!-- Script -->
     <script src="./js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Uncomment the next line if you have a separate audio.js file -->
-    <!-- <script src="./js/module/audio.js"></script> -->
   </body>
 </html>

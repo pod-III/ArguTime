@@ -1,42 +1,47 @@
-# Debating Timer
+# ArguTime Timer README
 
-This is a simple web-based debating timer application with features tailored for debate practice. The application provides timers for different debate formats, speaker information, and various control buttons for managing the debate flow.
+Welcome to ArguTime, a web-based debating timer application! This HTML file serves as the main structure for the ArguTime web application. Below is an overview of the key components and functionalities.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Usage](#usage)
+- [Customization](#customization)
+- [Feedback](#feedback)
+- [License](#license)
+
+## Overview
+
+ArguTime is a feature-rich web application designed to assist debate organizers and participants in managing debate sessions efficiently. It includes a customizable timer, sound control, and speaker information display for a seamless debating experience.
 
 ## Features
-- **Casebuilding Timer**: Timer specifically designed for casebuilding.
-- **Debate Timer**: Main debate timer for tracking speaking time in different debate formats.
-- **Navigation and Settings**: Easily switch between debate timers and select different debate styles.
-- **Audio Alerts**: Integrated audio alerts to signal specific events during the debate.
-- **Point of Information (POI) Button**: A dedicated button for managing Points of Information.
-- **Speaker Information Display**: Displays information about the current speaker.
-- **Control Buttons**: Buttons to start, reset, and navigate through debate rounds.
-- **Customizable Sound**: Allows users to upload custom sounds for audio alerts.
 
-## How to Use
-1. Choose the debate timer by clicking on the corresponding button: "Casebuilding Timer" or "Debate Timer."
-2. Use the dropdown menu to select the desired debate style (British Parliamentary, Asian Parliamentary, Australian Parliamentary, or NSDC).
-3. Click the play button to enable audio alerts (Note: It's initially disabled).
-4. Utilize the setting button to upload custom sounds for audio alerts.
-5. The main display shows the current time and a POI button for managing Points of Information.
-6. Speaker information is displayed below the timer.
-7. Control the debate flow using the start, reset, before, and next buttons.
-8. Adjust settings by clicking on the gear icon.
+- **Navigation Bar:** Provides easy navigation with options to switch between different debate timers and select debate styles.
+- **Sound Control:** Allows users to control sound settings, play a sound, and customize the sound played during various events.
+- **Speaker Information:** Displays information about the current speaker.
+- **Time and Speaker Overlay:** Shows the timer, point of information button, and navigation buttons for moving between debate sections.
+- **Timer Controls:** Includes start and reset buttons for controlling the debate timer.
+- **Popup Forms:** Offers a feedback form and sound setting options through interactive popups.
 
-## Audio Files
-- Two default audio files are provided: "bell.mp3" and "bell2.mp3." Users can upload custom audio files using the settings.
+## Usage
 
-## File Structure
-- `index.html`: The main HTML file containing the structure of the web page.
-- `style.css`: The stylesheet file for styling the web page.
-- `script.js`: The JavaScript file containing the logic and functionality of the debating timer.
+1. Open the [ArguTime web application](https://pod-iii.github.io/ArguTime/index.html) in a web browser.
+2. Navigate through the different debate timers using the navigation bar.
+3. Control sound settings and play sounds using the sound control section.
+4. Start and reset the ArguTime debate timer as needed.
 
-## Acknowledgments
-- This application uses Font Awesome for icons.
-- Audio files provided by default are "bell.mp3" and "bell2.mp3."
+## Customization
+
+- **Debate Styles:** Choose your preferred debate style from the navigation bar.
+- **Sound Selection:** Customize the sound played during debate events by selecting a sound from the options or uploading a custom sound.
+
+## Feedback
+
+We welcome your feedback to improve ArguTime. If you encounter any issues or have suggestions for enhancements, please use the [Feedback Form](https://docs.google.com/forms/d/e/1FAIpQLSfhh36_kWxw6-5LiZPP7pcZPS60qOtqd35nocfzUX4Ydqaqlg/viewform).
 
 ## License
-This project is licensed under the [MIT License](LICENSE.md).
 
-Feel free to contribute to and enhance the functionality of this debating timer. If you encounter any issues or have suggestions for improvement, please create an issue in the repository.
+This project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code according to the terms of the license.
 
-Happy debating!
+Thank you for using ArguTime! Happy debating!

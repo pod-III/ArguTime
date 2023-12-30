@@ -1,7 +1,24 @@
+// HTML DOM Variables
+const debateStyleButtonElement = document.getElementById("system");
+const timerDisplayElement = document.getElementById("time");
+const startButtonElement = document.getElementById("start");
+const resetButtonElement = document.getElementById("reset");
+
+// Popup DOM
+const popupButtonSoundCloseElement = document.getElementById("close-btn-sound");
+const popupButtonFormCloseElement = document.getElementById("close-btn-form");
+const popupButtonSoundOpenElement = document.getElementById("setting");
+const popupButtonFormOpenElement = document.getElementById("feedback-button");
+
+// Sound HTML DOM Variables
+const soundPopupOverlayElement = document.getElementById("popupOverlay");
+const uploadCheckboxElement = document.getElementById("uploadCheckbox");
+const soundPickElement = document.getElementById("soundpic");
+const formPopupOverlayElement = document.getElementById("popupOverlayForm");
+const audioFileInputElement = document.getElementById("audioFileInput");
+
+// Audio Function Handler
 function initializeAudioHandler() {
-  const audioFileInput = document.getElementById("audioFileInput");
-  const soundPic = document.getElementById("soundpic");
-  const checkBox = document.getElementById("uploadCheckbox");
   const soundList = {
     bell: "../media/bell.mp3",
     cow: "../media/moo.mp3",
@@ -26,7 +43,10 @@ function initializeAudioHandler() {
     };
 
     xhr.send();
-    console.log("Audio File Default Loaded", audioFileInput.files.length > 0);
+    console.log(
+      "Audio File Default Loaded",
+      audioFileInputElement.files.length > 0
+    );
   }
 
   loadDefaultAudio("bell");
@@ -57,165 +77,172 @@ function initializeAudioHandler() {
       }
     },
     save: function () {
-      if (audioFileInput.files.length > 0 && checkBox.checked) {
+      if (
+        audioFileInputElement.files.length > 0 &&
+        uploadCheckboxElement.checked
+      ) {
         console.log("Upload Saved");
         audioFileInputFunction(audioFileInput);
-        document.getElementById("soundpic").selectedIndex = 0;
+        soundPickElement.selectedIndex = 0;
       } else {
         console.log("No file selected. Resetting to default. Saved");
-        loadDefaultAudio(soundPic.value);
+        loadDefaultAudio(soundPickElement.value);
       }
-      document.getElementById("popupOverlay").style.display = "none";
+      soundPopupOverlayElement.style.display = "none";
     },
   };
 }
 
-// DOM Variables
-const debateStyleButton = document.getElementById("system");
-const timeDisplay = document.getElementById("time");
-const startButton = document.getElementById("start");
-const resetButton = document.getElementById("reset");
-
 // Audio Functions
-
 const soundFunctions = initializeAudioHandler();
-
 const saveSound = soundFunctions.save;
 const playSound = soundFunctions.play;
 
-// Global Variables
-let timer;
+// Main Timer Function
+const mainFunction = () => {
+  // Loop Interval Variable
+  let timer;
 
-let system = {
-  BP: {
-    name: "British Parliamentary",
-    time: [900],
-  },
-  Asian: {
-    name: "Asian Parliamentary",
-    time: [1800],
-  },
-  WSDC: {
-    name: "WSDC",
-    time: [1800],
-  },
-  Austral: {
-    name: "Australian Parliamentary",
-    time: [1800],
-  },
-  list: function () {
-    return Object.values(this)
-      .filter((item) => typeof item !== "function")
-      .map((item) => item.name);
-  },
-};
+  // Debate system object
+  let system = {
+    BP: {
+      name: "British Parliamentary",
+      time: [900],
+    },
+    Asian: {
+      name: "Asian Parliamentary",
+      time: [1800],
+    },
+    WSDC: {
+      name: "WSDC",
+      time: [1800],
+    },
+    Austral: {
+      name: "Australian Parliamentary",
+      time: [1800],
+    },
+    list: function () {
+      return Object.values(this)
+        .filter((item) => typeof item !== "function")
+        .map((item) => item.name);
+    },
+  };
 
-let timeRule = system["BP"].time;
-let time = timeRule;
-let isRunning = false;
+  // Global Vairables
+  let timeRule = system["BP"].time;
+  let time = timeRule;
+  let isRunning = false;
 
-const audioHandler = initializeAudioHandler();
+  // Function to create a bell sound
+  const bellSound = (i) => {
+    if (i === 1) {
+      playSound();
+    } else {
+      playSound();
+      setTimeout(playSound, 500);
+    }
+  };
 
-// Function to create a bell sound
-const bellSound = (i) => {
-  const play = audioHandler.play;
-  if (i === 1) {
-    play();
-  } else {
-    play();
-    setTimeout(play, 500);
-  }
-};
-
-// Change Debate System
-const changeSystem = () => {
-  const index = debateStyleButton.selectedIndex;
-  const style = debateStyleButton.options[index].value;
-  timeRule = system[style].time;
-  time = timeRule;
-  changeDisplay(time);
-  console.log(timeRule);
-};
-
-// Change Timer Display
-const changeDisplay = (number) => {
-  const minute = Math.floor(number / 60);
-  const second = number % 60;
-
-  function pad(value) {
-    return value < 10 ? `0${value}` : `${value}`;
-  }
-
-  const text = `${pad(minute)}:${pad(second)}`;
-  timeDisplay.innerHTML = text;
-};
-
-// Function to Start and Stop
-const start = () => {
-  if (!isRunning) {
-    resetButton.style.display = "inline-block";
-    isRunning = true;
-    timer = setInterval(counting, 1000);
-    startButton.innerHTML = '<i class="fa fa-pause"></i> Pause';
-  }
-};
-
-const stop = () => {
-  if (isRunning) {
-    isRunning = false;
-    clearInterval(timer);
-    startButton.innerHTML = '<i class="fa fa-play"></i> Start';
-  }
-};
-
-// Function to count
-const counting = () => {
-  if (time === 0) {
-    stop();
-    bellSound(2);
-  } else {
-    time--;
+  // Change Debate System
+  const changeSystem = () => {
+    const index = debateStyleButtonElement.selectedIndex;
+    const style = debateStyleButtonElement.options[index].value;
+    timeRule = system[style].time;
+    time = timeRule;
     changeDisplay(time);
-  }
+    console.log(timeRule);
+  };
+
+  // Change Timer Display
+  const changeDisplay = (number) => {
+    const minute = Math.floor(number / 60);
+    const second = number % 60;
+
+    function pad(value) {
+      return value < 10 ? `0${value}` : `${value}`;
+    }
+
+    const text = `${pad(minute)}:${pad(second)}`;
+    timerDisplayElement.innerHTML = text;
+  };
+
+  // Function to Start and Pause the Timer
+  const start = () => {
+    if (!isRunning) {
+      resetButtonElement.style.display = "inline-block";
+      isRunning = true;
+      timer = setInterval(counting, 1000);
+      startButtonElement.innerHTML = '<i class="fa fa-pause"></i> Pause';
+    }
+  };
+
+  const stop = () => {
+    if (isRunning) {
+      isRunning = false;
+      clearInterval(timer);
+      startButtonElement.innerHTML = '<i class="fa fa-play"></i> Start';
+    }
+  };
+
+  // Function to count
+  const counting = () => {
+    if (time === 0) {
+      stop();
+      bellSound(2);
+    } else {
+      time--;
+      changeDisplay(time);
+    }
+  };
+
+  // Event Listener for HTML Elements
+  startButtonElement.addEventListener("click", () => {
+    isRunning ? stop() : start();
+  });
+
+  resetButtonElement.addEventListener("click", () => {
+    stop();
+    time = timeRule;
+    resetButtonElement.style.display = "none";
+    changeDisplay(time);
+  });
+
+  debateStyleButtonElement.addEventListener("change", () => {
+    isRunning ? console.log("can't change when timer running") : changeSystem();
+  });
+
+  // Variable to store temp setting
+  let audioPicIndex;
+  let checkBox;
+
+  // Pop Up Function Sound
+  popupButtonSoundOpenElement.addEventListener("click", function openPopup() {
+    soundPopupOverlayElement.style.display = "flex";
+    audioPicIndex = soundPickElement.selectedIndex;
+    checkBox = uploadCheckboxElement.checked;
+  });
+
+  popupButtonSoundCloseElement.addEventListener("click", function closePopUp() {
+    soundPopupOverlayElement.style.display = "none";
+    soundPickElement.selectedIndex = audioPicIndex;
+    uploadCheckboxElement.checked = checkBox;
+  });
+
+  // Pop Up Function Form
+  popupButtonFormOpenElement.addEventListener(
+    "click",
+    function openPopupForm() {
+      formPopupOverlayElement.style.display = "flex";
+    }
+  );
+
+  popupButtonFormCloseElement.addEventListener(
+    "click",
+    function closePopupForm() {
+      formPopupOverlayElement.style.display = "none";
+    }
+  );
 };
 
-// Event Listener for HTML Elements
-startButton.addEventListener("click", () => {
-  isRunning ? stop() : start();
-});
-
-resetButton.addEventListener("click", () => {
-  stop();
-  time = timeRule;
-  resetButton.style.display = "none";
-  changeDisplay(time);
-});
-
-debateStyleButton.addEventListener("change", () => {
-  isRunning ? console.log("can't change when timer running") : changeSystem();
-});
-
-let audioPicIndex;
-let checkBox;
-
-// Pop Up Function
-function openPopup() {
-  document.getElementById("popupOverlay").style.display = "flex";
-  audioPicIndex = document.getElementById("soundpic").selectedIndex;
-  checkBox = document.getElementById("uploadCheckbox").checked;
-}
-
-function closePopUp() {
-  document.getElementById("uploadCheckbox").checked = checkBox;
-  document.getElementById("soundpic").selectedIndex = audioPicIndex;
-  document.getElementById("popupOverlay").style.display = "none";
-}
-
-// Pop Up Function Form
-function openPopupForm() {
-  document.getElementById("popupOverlayForm").style.display = "flex";
-}
-
-function closePopupForm() {
-  document.getElementById("popupOverlayForm").style.display = "none";
-}
+// Global Loader
+document.addEventListener("DOMContentLoaded", mainFunction);
