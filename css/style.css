@@ -6,8 +6,23 @@ body {
   position: relative;
 }
 
+.bgc-1 {
+  background-color: #3a98c4;
+}
+.bgc-2 {
+  background-color: #adc4ce;
+}
+.bgc-3 {
+  background-color: #eee0c9;
+}
+.bgc-4 {
+  background-color: #f1f0e8;
+}
+
+
 a {
   text-decoration: none;
+  color: black;
 }
 
 .button {
@@ -214,43 +229,25 @@ iframe {
 section {
   padding: 30px 0;
 }
+
 .buffer {
   width: 2vw;
   height: 15vh;
   margin: 3rem 0;
 }
-hr {
-  visibility: hidden;
-}
-.bgc-1 {
-  background-color: #3a98c4;
-}
-.bgc-2 {
-  background-color: #adc4ce;
-}
-.bgc-3 {
-  background-color: #eee0c9;
-}
-.bgc-4 {
-  background-color: #f1f0e8;
-}
-a {
-  color: black;
-  text-decoration: none;
-}
+
 
 .sound-container {
   margin-top: 25%;
 }
 
-/* Add this style for the select element */
 #system {
-  padding: 8px 16px; /* Adjust padding as needed */
-  border: 1px solid #f1f0e8; /* Add a border */
-  border-radius: 5px; /* Add border-radius for rounded corners */
-  background-color: #3a98c4; /* Set background color */
-  color: #f1f0e8; /* Set text color */
-  margin: 0 10px; /* Adjust margin as needed */
+  padding: 8px 16px; 
+  border: 1px solid #f1f0e8; 
+  border-radius: 5px; 
+  background-color: #3a98c4; 
+  color: #f1f0e8;
+  margin: 0 10px;
 }
 
 #system option {
@@ -259,14 +256,12 @@ a {
   font-weight: bold;
 }
 
-/* Use flexbox for layout */
 .input-container {
   display: grid;
   grid-template-columns: 15fr 1fr;
   grid-template-rows: 1fr;
 }
 
-/* Add margin between the two inputs */
 .input-container input {
   width: 95%;
 }
